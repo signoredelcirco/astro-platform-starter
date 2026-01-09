@@ -1,19 +1,56 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Markdown from '../components/Markdown.astro';
+import podcastData from '../content/podcast.json';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const { podcastInfo, episodes } = podcastData;
+const latestEpisode = episodes[0];
 ---
 
-<Layout title="Welcome to Astro.">
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<style>
+  .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px 20px; text-align: center; color: white; margin-bottom: 60px; }
+  .hero h1 { font-size: 3.5rem; margin: 0 0 20px 0; font-weight: 800; }
+  .hero p { font-size: 1.3rem; margin: 0; opacity: 0.95; }
+  .latest-episode { max-width: 800px; margin: 0 auto 60px; background: #f8f9fa; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  .episode-header { padding: 30px; border-bottom: 4px solid #667eea; }
+  .episode-title { font-size: 2rem; margin: 0 0 10px 0; color: #333; }
+  .episode-meta { color: #666; font-size: 0.9rem; margin-bottom: 15px; }
+  .episode-description { color: #555; line-height: 1.6; margin-bottom: 20px; }
+  .player-container { padding: 30px; background: white; }
+  .spreaker-link { display: inline-block; background: #667eea; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
+  .spreaker-link:hover { background: #764ba2; }
+  .nav-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+  .nav-button { padding: 12px 30px; border: 2px solid #667eea; background: white; color: #667eea; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s; }
+  .nav-button:hover { background: #667eea; color: white; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+</style>
+
+<Layout title={podcastInfo.title}>
+  <div class="hero">
+    <h1>{podcastInfo.title}</h1>
+    <p>{podcastInfo.description}</p>
+  </div>
+  
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Ultimo Episodio</h2>
+    
+    <div class="latest-episode">
+      <div class="episode-header">
+        <h3 class="episode-title">{latestEpisode.title}</h3>
+        <div class="episode-meta">
+          <strong>Episodio #{latestEpisode.number}</strong> • {new Date(latestEpisode.date).toLocaleDateString('it-IT')} • {latestEpisode.duration}
+        </div>
+        <p class="episode-description">{latestEpisode.description}</p>
+      </div>
+      <div class="player-container">
+        <a href={latestEpisode.spreaker} target="_blank" rel="noopener noreferrer" class="spreaker-link">
+          ▶ Ascolta su Spreaker
+        </a>
+      </div>
+    </div>
+    
+    <div class="nav-buttons">
+      <a href="/astro-platform-starter/puntate" class="nav-button">Tutti gli Episodi</a>
+      <a href="/astro-platform-starter/chi-sono" class="nav-button">Chi Sono</a>
+    </div>
+  </div>
 </Layout>
