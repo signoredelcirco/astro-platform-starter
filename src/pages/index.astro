@@ -1,56 +1,89 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import podcastData from '../content/podcast.json';
+import { getCollection } from 'astro:content';
 
-const { podcastInfo, episodes } = podcastData;
-const latestEpisode = episodes[0];
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Opinione Non Richiesta', href: '/opinione-non-richiesta' },
+  { label: 'A-Normal', href: '/a-normal' },
+  { label: 'Chiacchiere', href: '/chiacchiere' },
+];
 ---
 
-<style>
-  .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px 20px; text-align: center; color: white; margin-bottom: 60px; }
-  .hero h1 { font-size: 3.5rem; margin: 0 0 20px 0; font-weight: 800; }
-  .hero p { font-size: 1.3rem; margin: 0; opacity: 0.95; }
-  .latest-episode { max-width: 800px; margin: 0 auto 60px; background: #f8f9fa; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-  .episode-header { padding: 30px; border-bottom: 4px solid #667eea; }
-  .episode-title { font-size: 2rem; margin: 0 0 10px 0; color: #333; }
-  .episode-meta { color: #666; font-size: 0.9rem; margin-bottom: 15px; }
-  .episode-description { color: #555; line-height: 1.6; margin-bottom: 20px; }
-  .player-container { padding: 30px; background: white; }
-  .spreaker-link { display: inline-block; background: #667eea; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
-  .spreaker-link:hover { background: #764ba2; }
-  .nav-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
-  .nav-button { padding: 12px 30px; border: 2px solid #667eea; background: white; color: #667eea; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s; }
-  .nav-button:hover { background: #667eea; color: white; }
-  .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-</style>
-
-<Layout title={podcastInfo.title}>
-  <div class="hero">
-    <h1>{podcastInfo.title}</h1>
-    <p>{podcastInfo.description}</p>
-  </div>
-  
-  <div class="container">
-    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Ultimo Episodio</h2>
-    
-    <div class="latest-episode">
-      <div class="episode-header">
-        <h3 class="episode-title">{latestEpisode.title}</h3>
-        <div class="episode-meta">
-          <strong>Episodio #{latestEpisode.number}</strong> • {new Date(latestEpisode.date).toLocaleDateString('it-IT')} • {latestEpisode.duration}
+<Layout title="Signore del Circo">
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 border-b border-gray-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between gap-8">
+        <div class="font-bold text-lg">Signore del Circo</div>
+        <div class="flex gap-2 overflow-x-auto">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class="px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap border border-gray-300 hover:bg-gray-50 transition"
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
-        <p class="episode-description">{latestEpisode.description}</p>
-      </div>
-      <div class="player-container">
-        <a href={latestEpisode.spreaker} target="_blank" rel="noopener noreferrer" class="spreaker-link">
-          ▶ Ascolta su Spreaker
-        </a>
       </div>
     </div>
-    
-    <div class="nav-buttons">
-      <a href="/astro-platform-starter/puntate" class="nav-button">Tutti gli Episodi</a>
-      <a href="/astro-platform-starter/chi-sono" class="nav-button">Chi Sono</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-5xl font-bold mb-4">Signore del Circo</h1>
+      <p class="text-xl opacity-90">Un podcast affascinante su Game of Thrones, intrattenimento e gaming</p>
     </div>
   </div>
+
+  <!-- Latest Episode Section -->
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold mb-8">Ultimo Episodio</h2>
+    
+    <div class="bg-gray-50 rounded-lg border border-gray-200 p-8">
+      <div class="mb-6">
+        <h3 class="text-2xl font-bold mb-3">Game of Thrones: Il Finale Perfetto?</h3>
+        <p class="text-gray-600">Episodio #10 • 09/01/2024 • 45 minuti</p>
+      </div>
+      
+      <p class="text-gray-700 mb-6 leading-relaxed">
+        Analizziamo il finale di Game of Thrones e discutiamo se era veramente il finale che meritava la saga.
+      </p>
+      
+      <div class="flex gap-4 items-center">
+        <button class="px-6 py-3 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 transition">
+          ▶ Ascolta su Spreaker
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Podcasts Grid -->
+  <div class="max-w-6xl mx-auto px-6 py-16 border-t border-gray-200">
+    <h2 class="text-3xl font-bold mb-8">I Nostri Podcast</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {[
+        { name: 'Opinione Non Richiesta', episodes: 24, color: 'blue' },
+        { name: 'A-Normal', episodes: 18, color: 'green' },
+        { name: 'Chiacchiere', episodes: 31, color: 'purple' },
+      ].map((podcast) => (
+        <a
+          href={`/${podcast.name.toLowerCase().replace(/[\s-]/g, '-')}`}
+          class={`p-6 rounded-lg border-2 border-gray-200 hover:border-${podcast.color}-600 hover:shadow-lg transition group`}
+        >
+          <h3 class="text-xl font-bold mb-2 group-hover:text-${podcast.color}-600">{podcast.name}</h3>
+          <p class="text-gray-600">{podcast.episodes} episodi</p>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <footer class="border-t border-gray-200 mt-16 py-12 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto text-center text-gray-600">
+      <p>© 2024 Signore del Circo. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
 </Layout>
