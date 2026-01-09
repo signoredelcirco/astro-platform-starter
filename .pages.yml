@@ -1,0 +1,189 @@
+# Pages CMS Configuration - Signore del Circo Podcast
+# Configurazione per Pages CMS (GitHub CMS visuale)
+
+mediaDir: src/assets/media
+mediaDirOutput: /assets/media
+
+collections:
+  # ========== PAGINE STATICHE ==========
+  - name: pages
+    label: Pagine
+    description: Pagine statiche del sito (Home, Chi sono, ecc.)
+    folder: src/content/pages
+    format: md
+    create: false
+    editor:
+      preview: true
+    fields:
+      - name: title
+        label: Titolo
+        widget: string
+        required: true
+      - name: subtitle
+        label: Sottotitolo
+        widget: string
+        required: false
+      - name: description
+        label: Descrizione breve
+        widget: text
+        required: false
+      - name: hero_image
+        label: Immagine Hero (sfondo sezione principale)
+        widget: image
+        required: false
+      - name: cta_listen_label
+        label: Testo bottone Ascoltami
+        widget: string
+        default: Ascoltami
+        required: false
+      - name: cta_listen_url
+        label: URL Ascoltami
+        widget: string
+        required: false
+      - name: cta_read_label
+        label: Testo bottone Leggi
+        widget: string
+        default: Leggi articoli
+        required: false
+      - name: cta_read_url
+        label: URL Leggi
+        widget: string
+        required: false
+
+  # ========== EPISODI PODCAST ==========
+  - name: episodes
+    label: Episodi Podcast
+    description: I tuoi episodi Spreaker, gestibili dalla dashboard
+    folder: src/content/episodes
+    format: md
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - name: title
+        label: Titolo Episodio
+        widget: string
+        required: true
+      - name: slug
+        label: Slug (URL amichevole)
+        widget: string
+        required: true
+      - name: date
+        label: Data Pubblicazione
+        widget: datetime
+        format: YYYY-MM-DD
+        required: true
+      - name: description
+        label: Descrizione Episodio
+        widget: markdown
+        hint: "Descrivi l'episodio, ospiti, argomenti trattati"
+        required: true
+      - name: cover
+        label: Copertina Episodio
+        widget: image
+        required: true
+      - name: spreaker_episode_id
+        label: ID Episodio Spreaker
+        widget: string
+        hint: "Prendi il numero ID dalla URL Spreaker (es: https://www.spreaker.com/episode/123456789 --> 123456789)"
+        required: true
+      - name: tags
+        label: Tag/Categorie
+        widget: list
+        field:
+          label: Tag
+          widget: string
+        required: false
+
+  # ========== ARTICOLI BLOG ==========
+  - name: posts
+    label: Articoli Blog
+    description: Articoli del tuo blog con opzione embed Spreaker
+    folder: src/content/posts
+    format: md
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - name: title
+        label: Titolo Articolo
+        widget: string
+        required: true
+      - name: slug
+        label: Slug (URL)
+        widget: string
+        required: true
+      - name: date
+        label: Data Pubblicazione
+        widget: datetime
+        format: YYYY-MM-DD
+        required: true
+      - name: cover
+        label: Immagine Copertina Articolo
+        widget: image
+        required: true
+      - name: excerpt
+        label: Estratto (preview per lista articoli)
+        widget: text
+        required: true
+      - name: body
+        label: Contenuto Articolo
+        widget: markdown
+        hint: "Scrivi il contenuto dell'articolo in Markdown"
+        required: true
+      - name: spreaker_episode_id
+        label: ID Episodio Spreaker (OPZIONALE)
+        widget: string
+        hint: "Se vuoi embeddare il player Spreaker in questo articolo, inserisci l'ID episodio"
+        required: false
+      - name: tags
+        label: Tag
+        widget: list
+        field:
+          label: Tag
+          widget: string
+        required: false
+
+  # ========== PAGINA CHI SONO ==========
+  - name: about
+    label: Chi Sono
+    description: La tua pagina di presentazione
+    files:
+      - name: about
+        label: Chi Sono
+        file: src/content/pages/about.md
+        format: md
+        fields:
+          - name: title
+            label: Titolo Pagina
+            widget: string
+            default: Chi sono
+            required: true
+          - name: bio
+            label: Biografia
+            widget: markdown
+            hint: "Scrivi la tua biografia, esperienza, passioni"
+            required: true
+          - name: photo
+            label: Foto Profilo
+            widget: image
+            required: true
+          - name: social_links
+            label: Link Social
+            widget: list
+            fields:
+              - name: platform
+                label: Piattaforma (YouTube, Instagram, TikTok, X, Spreaker, ecc.)
+                widget: string
+                required: true
+              - name: url
+                label: URL Profilo
+                widget: string
+                required: true
+              - name: icon
+                label: Icona (nome FontAwesome - es: fa-youtube, fa-instagram)
+                widget: string
+                default: fa-link
+                required: false
