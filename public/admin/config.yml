@@ -1,0 +1,38 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+publish_mode: editorial_workflow
+
+media_folder: "src/assets"
+public_folder: "/assets"
+
+collections:
+  - name: "articoli"
+    label: "Articoli"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string", required: true }
+      - { label: "Descrizione", name: "description", widget: "text", required: true }
+      - { label: "Autore", name: "author", widget: "string", default: "Signore del Circo" }
+      - { label: "Data di pubblicazione", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Immagine copertina", name: "heroImage", widget: "image", required: false }
+      - { label: "Corpo articolo", name: "body", widget: "markdown", required: true }
+  
+  - name: "podcast"
+    label: "Puntate Podcast"
+    folder: "src/content/podcast"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string", required: true }
+      - { label: "Descrizione", name: "description", widget: "text", required: true }
+      - { label: "Numero episodio", name: "episode_number", widget: "number", value_type: "int" }
+      - { label: "Data di uscita", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Link audio/Spotify", name: "audio_url", widget: "string", required: true }
+      - { label: "Durata", name: "duration", widget: "string", hint: "Es: 45:30" }
+      - { label: "Note", name: "body", widget: "markdown", required: false }
