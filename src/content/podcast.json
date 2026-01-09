@@ -1,0 +1,72 @@
+{
+  "podcastInfo": {
+    "title": "Signore del Circo",
+    "description": "Un podcast affascinante su Game of Thrones, intrattenimento e gaming",
+    "author": "Signore del Circo",
+    "image": "https://via.placeholder.com/500x500?text=Signore+del+Circo",
+    "spreaker": "https://www.spreaker.com/user/signoredelcirco"
+  },
+  "aboutAuthor": {
+    "name": "Signore del Circo",
+    "bio": "Podcaster e content creator italiano appassionato di Game of Thrones, intrattenimento e gaming. Condivido analisi approfondite, discussioni e opinioni sui miei argomenti preferiti con la comunità.",
+    "image": "https://via.placeholder.com/300x300?text=Signore+del+Circo",
+    "socials": {
+      "youtube": "https://www.youtube.com/signoredelcirco",
+      "tiktok": "https://www.tiktok.com/@signoredelcirco",
+      "instagram": "https://www.instagram.com/signoredelcirco",
+      "twitter": "https://www.x.com/signoredelcirco"
+    }
+  },
+  "episodes": [
+    {
+      "id": 10,
+      "number": 10,
+      "title": "Game of Thrones: Il Finale Perfetto?",
+      "description": "Analizziamo il finale di Game of Thrones e discutiamo se era veramente il finale che meritava la saga.",
+      "date": "2024-01-09",
+      "duration": "45 minuti",
+      "spreaker": "https://www.spreaker.com/user/signoredelcirco/episodio-10",
+      "tags": ["Game of Thrones", "Analisi", "Fantasy"]
+    },
+    {
+      "id": 9,
+      "number": 9,
+      "title": "Hollow Knight: Silksong - Le Teorie",
+      "description": "Parliamo delle teorie su Hollow Knight: Silksong e cosa potremmo aspettarci dal nuovo gioco.",
+      "date": "2024-01-02",
+      "duration": "38 minuti",
+      "spreaker": "https://www.spreaker.com/user/signoredelcirco/episodio-9",
+      "tags": ["Gaming", "Hollow Knight", "Teorie"]
+    },
+    {
+      "id": 8,
+      "number": 8,
+      "title": "Red Dead Redemption 2: Un Capolavoro",
+      "description": "Esploriamo la narrativa affascinante di Red Dead Redemption 2 e il suo impatto sul gaming.",
+      "date": "2023-12-26",
+      "duration": "52 minuti",
+      "spreaker": "https://www.spreaker.com/user/signoredelcirco/episodio-8",
+      "tags": ["Gaming", "Red Dead", "Narrativa"]
+    },
+    {
+      "id": 7,
+      "number": 7,
+      "title": "One Piece: Il Viaggio Continua",
+      "description": "Discussione sui recenti sviluppi di One Piece e cosa c'è in serbo per i fan della serie.",
+      "date": "2023-12-19",
+      "duration": "41 minuti",
+      "spreaker": "https://www.spreaker.com/user/signoredelcirco/episodio-7",
+      "tags": ["Anime", "One Piece", "Discussione"]
+    },
+    {
+      "id": 6,
+      "number": 6,
+      "title": "Smart Home Automation: Il Futuro",
+      "description": "Esploriamo le tecnologie di automazione domestica e come stanno cambiando le nostre vite.",
+      "date": "2023-12-12",
+      "duration": "36 minuti",
+      "spreaker": "https://www.spreaker.com/user/signoredelcirco/episodio-6",
+      "tags": ["Tecnologia", "Smart Home", "IOT"]
+    }
+  ]
+}
