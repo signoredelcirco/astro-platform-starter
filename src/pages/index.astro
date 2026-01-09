@@ -1,88 +1,77 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Opinione Non Richiesta', href: '/opinione-non-richiesta' },
-  { label: 'A-Normal', href: '/a-normal' },
-  { label: 'Chiacchiere', href: '/chiacchiere' },
+  { label: 'Home', href: '/astro-platform-starter/' },
+  { label: 'Opinione Non Richiesta', href: '/astro-platform-starter/opinione-non-richiesta' },
+  { label: 'A-Normal', href: '/astro-platform-starter/a-normal' },
+  { label: 'Chiacchiere', href: '/astro-platform-starter/chiacchiere' },
+];
+
+const podcasts = [
+  { name: 'Opinione Non Richiesta', episodes: '24 episodi', href: '/astro-platform-starter/opinione-non-richiesta' },
+  { name: 'A-Normal', episodes: '18 episodi', href: '/astro-platform-starter/a-normal' },
+  { name: 'Chiacchiere', episodes: '31 episodi', href: '/astro-platform-starter/chiacchiere' },
 ];
 ---
 
 <Layout title="Signore del Circo">
-  <!-- Navigation -->
-  <nav class="sticky top-0 z-50 border-b border-gray-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-4">
-      <div class="flex items-center justify-between gap-8">
-        <div class="font-bold text-lg">Signore del Circo</div>
-        <div class="flex gap-2 overflow-x-auto">
-          {navItems.map((item) => (
-            <a
-              href={item.href}
-              class="px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap border border-gray-300 hover:bg-gray-50 transition"
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
+  <nav style="position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #ccc; background: white; padding: 16px 24px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 32px;">
+      <div style="font-weight: bold; font-size: 18px;">Signore del Circo</div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        {navItems.map((item) => (
+          <a href={item.href} style="padding: 8px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; border: 1px solid #999; text-decoration: none; color: black; transition: all 0.2s;" onmouseover="this.style.backgroundColor='#f0f0f0'" onmouseout="this.style.backgroundColor='transparent'">
+            {item.label}
+          </a>
+        ))}
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <div class="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-20 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h1 class="text-5xl font-bold mb-4">Signore del Circo</h1>
-      <p class="text-xl opacity-90">Un podcast affascinante su Game of Thrones, intrattenimento e gaming</p>
+  <div style="background: black; color: white; padding: 80px 24px; text-align: center;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 16px;">Signore del Circo</h1>
+      <p style="font-size: 20px; opacity: 0.9;">Un podcast affascinante su Game of Thrones, intrattenimento e gaming</p>
     </div>
   </div>
 
-  <!-- Latest Episode Section -->
-  <div class="max-w-6xl mx-auto px-6 py-16">
-    <h2 class="text-3xl font-bold mb-8">Ultimo Episodio</h2>
+  <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px;">
+    <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 32px;">Ultimo Episodio</h2>
     
-    <div class="bg-gray-50 rounded-lg border border-gray-200 p-8">
-      <div class="mb-6">
-        <h3 class="text-2xl font-bold mb-3">Game of Thrones: Il Finale Perfetto?</h3>
-        <p class="text-gray-600">Episodio #10 • 09/01/2024 • 45 minuti</p>
+    <div style="background: #f5f5f5; border-radius: 8px; border: 1px solid #ddd; padding: 32px;">
+      <div style="margin-bottom: 24px;">
+        <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 12px;">Game of Thrones: Il Finale Perfetto?</h3>
+        <p style="color: #666; margin-bottom: 16px;">Episodio #10 • 09/01/2024 • 45 minuti</p>
       </div>
       
-      <p class="text-gray-700 mb-6 leading-relaxed">
+      <p style="color: #333; margin-bottom: 24px; line-height: 1.6;">
         Analizziamo il finale di Game of Thrones e discutiamo se era veramente il finale che meritava la saga.
       </p>
       
-      <div class="flex gap-4 items-center">
-        <button class="px-6 py-3 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 transition">
+      <div style="display: flex; gap: 16px;">
+        <a href="https://www.spreaker.com/user/signoredelcirco/episodio-10" target="_blank" style="padding: 12px 24px; background: black; color: white; border-radius: 6px; font-weight: 500; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">
           ▶ Ascolta su Spreaker
-        </button>
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- Podcasts Grid -->
-  <div class="max-w-6xl mx-auto px-6 py-16 border-t border-gray-200">
-    <h2 class="text-3xl font-bold mb-8">I Nostri Podcast</h2>
+  <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px; border-top: 1px solid #ddd;">
+    <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 32px;">I Nostri Podcast</h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {[
-        { name: 'Opinione Non Richiesta', episodes: 24, color: 'blue' },
-        { name: 'A-Normal', episodes: 18, color: 'green' },
-        { name: 'Chiacchiere', episodes: 31, color: 'purple' },
-      ].map((podcast) => (
-        <a
-          href={`/${podcast.name.toLowerCase().replace(/[\s-]/g, '-')}`}
-          class={`p-6 rounded-lg border-2 border-gray-200 hover:border-${podcast.color}-600 hover:shadow-lg transition group`}
-        >
-          <h3 class="text-xl font-bold mb-2 group-hover:text-${podcast.color}-600">{podcast.name}</h3>
-          <p class="text-gray-600">{podcast.episodes} episodi</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+      {podcasts.map((podcast) => (
+        <a href={podcast.href} style="padding: 24px; border-radius: 8px; border: 1px solid #ddd; text-decoration: none; color: black; transition: all 0.2s;" onmouseover="this.style.borderColor='#000'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'" onmouseout="this.style.borderColor='#ddd'; this.style.boxShadow='none'">
+          <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 8px;">{podcast.name}</h3>
+          <p style="color: #666;">{podcast.episodes}</p>
         </a>
       ))}
     </div>
   </div>
 
-  <footer class="border-t border-gray-200 mt-16 py-12 px-6 bg-gray-50">
-    <div class="max-w-6xl mx-auto text-center text-gray-600">
+  <footer style="border-top: 1px solid #ddd; margin-top: 64px; padding: 48px 24px; background: #f9f9f9;">
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center; color: #666;">
       <p>© 2024 Signore del Circo. Tutti i diritti riservati.</p>
     </div>
   </footer>
