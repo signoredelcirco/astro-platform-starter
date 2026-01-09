@@ -3,9 +3,9 @@ import Layout from '../layouts/Layout.astro';
 
 const navItems = [
   { label: 'Home', href: '/astro-platform-starter/' },
-  { label: 'Opinione Non Richiesta', href: '/astro-platform-starter/opinione-non-richiesta' },
-  { label: 'A-Normal', href: '/astro-platform-starter/a-normal' },
-  { label: 'Chiacchiere', href: '/astro-platform-starter/chiacchiere' },
+  { label: 'Chi sono', href: '/astro-platform-starter/chi-sono' },
+  { label: 'Puntate', href: '/astro-platform-starter/puntate' },
+  { label: 'Opinione non richiesta', href: '/astro-platform-starter/opinione-non-richiesta' },
 ];
 
 const podcasts = [
@@ -14,7 +14,6 @@ const podcasts = [
   { name: 'Chiacchiere', episodes: '31 episodi', href: '/astro-platform-starter/chiacchiere' },
 ];
 ---
-
 <Layout title="Signore del Circo">
   <nav style="position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #ccc; background: white; padding: 16px 24px;">
     <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 32px;">
@@ -37,33 +36,23 @@ const podcasts = [
   </div>
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px;">
-    <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 32px;">Ultimo Episodio</h2>
-    
-    <div style="background: #f5f5f5; border-radius: 8px; border: 1px solid #ddd; padding: 32px;">
-      <div style="margin-bottom: 24px;">
-        <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 12px;">Game of Thrones: Il Finale Perfetto?</h3>
-        <p style="color: #666; margin-bottom: 16px;">Episodio #10 • 09/01/2024 • 45 minuti</p>
-      </div>
-      
-      <p style="color: #333; margin-bottom: 24px; line-height: 1.6;">
-        Analizziamo il finale di Game of Thrones e discutiamo se era veramente il finale che meritava la saga.
-      </p>
-      
-      <div style="display: flex; gap: 16px;">
-        <a href="https://www.spreaker.com/user/signoredelcirco/episodio-10" target="_blank" style="padding: 12px 24px; background: black; color: white; border-radius: 6px; font-weight: 500; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">
-          ▶ Ascolta su Spreaker
-        </a>
-      </div>
+    <h2 style="font-size: 28px; font-weight: bold; margin-bottom: 32px;">Ultimo Episodio</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+      <a href="https://www.spreaker.com/user/signoredelcirco/episodio-10" target="_blank" style="padding: 24px; border-radius: 8px; border: 1px solid #ddd; text-decoration: none; color: black; transition: all 0.3s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+        <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px;">Game of Thrones: Il Finale Perfetto?</h3>
+        <p style="color: #666; margin-bottom: 16px; font-size: 14px;">Episodio #10 • 09/01/2024 • 45 minuti</p>
+        <p style="color: #333; margin-bottom: 24px; line-height: 1.6;">Analizziamo il finale di Game of Thrones e discutiamo se era veramente il finale che meritava la saga.</p>
+        <button style="display: inline-block; padding: 10px 20px; background-color: #333; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 500;" onmouseover="this.style.backgroundColor='#555';" onmouseout="this.style.backgroundColor='#333';">▶ Ascolta su Spreaker</button>
+      </a>
     </div>
   </div>
 
-  <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px; border-top: 1px solid #ddd;">
-    <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 32px;">I Nostri Podcast</h2>
-    
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px 64px 24px;">
+    <h2 style="font-size: 28px; font-weight: bold; margin-bottom: 32px;">I Nostri Podcast</h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
       {podcasts.map((podcast) => (
-        <a href={podcast.href} style="padding: 24px; border-radius: 8px; border: 1px solid #ddd; text-decoration: none; color: black; transition: all 0.2s;" onmouseover="this.style.borderColor='#000'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'" onmouseout="this.style.borderColor='#ddd'; this.style.boxShadow='none'">
-          <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 8px;">{podcast.name}</h3>
+        <a href={podcast.href} style="padding: 24px; border-radius: 8px; border: 1px solid #ddd; text-decoration: none; color: black; transition: all 0.3s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+          <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 8px;">{podcast.name}</h3>
           <p style="color: #666;">{podcast.episodes}</p>
         </a>
       ))}
