@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Opinione Non Richiesta', href: '/opinione-non-richiesta' },
+  { label: 'A-Normal', href: '/a-normal' },
+  { label: 'Chiacchiere', href: '/chiacchiere' },
+];
+const episodes = [
+  { id: 24, title: 'Gaming Trends 2024', date: '15/12/2024', duration: '38 min', description: 'Discutiamo dei trend più importanti nel gaming del 2024.', spreaker: 'https://www.spreaker.com/user/signoredelcirco/opinione-24' },
+  { id: 23, title: 'Streaming Wars', date: '01/12/2024', duration: '42 min', description: 'Chi vincerà la battaglia dello streaming?', spreaker: 'https://www.spreaker.com/user/signoredelcirco/opinione-23' },
+];
+---
+<Layout title="Opinione Non Richiesta | Signore del Circo">
+  <nav class="sticky top-0 z-50 border-b border-gray-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
+      <div class="font-bold text-lg">Signore del Circo</div>
+      <div class="flex gap-2 overflow-x-auto">
+        {navItems.map((item) => (
+          <a href={item.href} class="px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap border border-gray-300 hover:bg-gray-50 transition">{item.label}</a>
+        ))}
+      </div>
+    </div>
+  </nav>
+  <div class="bg-gradient-to-br from-blue-500 to-blue-700 text-white py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold">Opinione Non Richiesta</h1>
+      <p class="text-blue-100 mt-2">24 episodi</p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="space-y-6">
+      {episodes.map((episode) => (
+        <div class="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">{episode.title}</h3>
+            <span class="text-sm text-gray-600">Ep {episode.id}</span>
+          </div>
+          <p class="text-gray-600 text-sm mb-3">{episode.date} • {episode.duration}</p>
+          <p class="text-gray-700 mb-4">{episode.description}</p>
+          <a href={episode.spreaker} target="_blank" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">▶ Ascolta su Spreaker</a>
+        </div>
+      ))}
+    </div>
+  </div>
+  <footer class="border-t border-gray-200 mt-16 py-12 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto text-center text-gray-600">
+      <p>© 2024 Signore del Circo. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+</Layout>
