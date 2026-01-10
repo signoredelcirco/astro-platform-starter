@@ -1,13 +1,46 @@
-
 ---
 import { PodcastLayout } from '../../layouts/PodcastLayout.astro';
 ---
 
 <PodcastLayout title="Chiacchiere">
-  <main class="podcast-page">
-    <h1>Chiacchiere</h1>
-    <section class="podcast-content">
-      <p>Nessun contenuto ancora</p>
-    </section>
-  </main>
+  <section class="podcast-section">
+    <div class="podcast-header">
+      <span class="podcast-label">PODCAST & STORIE</span>
+      <h1>Ascolta.<br/>Pensa. Rifletti.</h1>
+      <p>Storie, opinioni e conversazioni che meritano il tuo tempo.</p>
+      <div class="podcast-buttons">
+        <a href="/astro-platform-starter/chiacchiere" class="btn-primary">ESPLORA →</a>
+        <a href="/astro-platform-starter/chi-sono" class="btn-secondary">CHI SONO</a>
+      </div>
+    </div>
+    <div class="podcast-image">
+      <img src="/astro-platform-starter/podcast-studio.jpg" alt="Podcast studio" />
+    </div>
+  </section>
+  
+  <section class="podcast-sections">
+    <h2>Le Sezioni</h2>
+    <div class="sections-grid">
+      <div class="section-card">
+        <h3>Opinione Non Richiesta</h3>
+        <p>Pensieri liberi e non filtrati</p>
+        <a href="/astro-platform-starter/opinione-non-richiesta">SCOPRI →</a>
+      </div>
+      <div class="section-card">
+        <h3>A-Normal</h3>
+        <p>Storie fuori dall'ordinario</p>
+        <a href="/astro-platform-starter/a-normal">SCOPRI →</a>
+      </div>
+      <div class="section-card">
+        <h3>Chiacchiere</h3>
+        <p>Conversazioni senza filtri</p>
+        <a href="/astro-platform-starter/chiacchiere">SCOPRI →</a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="coming-soon">
+    <h2>Contenuti in arrivo</h2>
+    <p>I contenuti saranno presto disponibili. Torna a trovarci!</p>
+  </section>
 </PodcastLayout>
