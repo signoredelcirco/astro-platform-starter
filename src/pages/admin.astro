@@ -4,11 +4,16 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel | Signore del Circo</title>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -16,8 +21,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
-    .login-container {
+    
+    .container {
       background: white;
       border-radius: 12px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -25,100 +32,233 @@
       max-width: 400px;
       width: 100%;
     }
-    h1 { text-align: center; margin-bottom: 2rem; color: #333; }
-    .login-box.hidden { display: none; }
-    .dashboard.hidden { display: none; }
+    
+    .login-section {
+      text-align: center;
+    }
+    
+    .login-section h1 {
+      margin-bottom: 2rem;
+      color: #333;
+      font-size: 28px;
+    }
+    
+    .login-section p {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 14px;
+    }
+    
+    #g_id_onload {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .google-button-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    
+    .dashboard {
+      display: none;
+      text-align: center;
+    }
+    
+    .dashboard.visible {
+      display: block;
+    }
+    
+    .dashboard h2 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    
     .user-info {
       background: #f5f5f5;
       padding: 1.5rem;
       border-radius: 8px;
       margin-bottom: 2rem;
-      text-align: center;
+      text-align: left;
     }
-    .user-info img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
+    
+    .user-info h3 {
+      color: #333;
+      margin-bottom: 1rem;
+      font-size: 16px;
     }
+    
+    .user-detail {
+      padding: 0.5rem 0;
+      color: #666;
+      font-size: 14px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .user-detail:last-child {
+      border-bottom: none;
+    }
+    
+    .user-detail strong {
+      color: #333;
+    }
+    
     .logout-btn {
-      background: #e74c3c;
+      background: #f44336;
       color: white;
       border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      width: 100%;
+      padding: 0.75rem 2rem;
+      border-radius: 4px;
+      font-size: 16px;
       cursor: pointer;
+      transition: background 0.3s;
     }
-    .logout-btn:hover { background: #c0392b; }
-    .google-button {
-      display: flex;
-      justify-content: center;
-      margin: 2rem 0;
+    
+    .logout-btn:hover {
+      background: #d32f2f;
+    }
+    
+    .error-message {
+      display: none;
+      background: #ffebee;
+      color: #c62828;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      font-size: 14px;
+    }
+    
+    .error-message.visible {
+      display: block;
+    }
+    
+    .nav-link {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+    }
+    
+    .nav-link a {
+      color: #667eea;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .nav-link a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h1>Admin Panel</h1>
-    <div id="loginBox" class="login-box">
-      <p style="text-align: center; color: #666; margin-bottom: 2rem;">
-        Accedi con Google per gestire il podcast
-      </p>
-      <div class="google-button">
-        <div id="g_id_onload"
-             data-client_id="INSERISCI_IL_TUO_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
-             data-callback="handleCredentialResponse">
-        </div>
-        <div class="g_id_signin" data-type="standard" data-size="large"></div>
+  <div class="container">
+    <!-- Login Section -->
+    <div class="login-section" id="loginSection">
+      <h1>🎹 Pannello Admin</h1>
+      <p>Accedi con il tuo account Google per gestire i contenuti</p>
+      
+      <div class="error-message" id="errorMessage"></div>
+      
+      <div class="google-button-wrapper">
+        <div
+          id="g_id_onload"
+          data-client_id="YOUR_GOOGLE_CLIENT_ID"
+          data-callback="handleCredentialResponse"
+        ></div>
+        <div class="g_id_signin" data-type="standard"></div>
       </div>
-      <p style="font-size: 0.85rem; color: #999; text-align: center; margin-top: 1rem;">
-        <strong>Nota:</strong> Inserisci il tuo Google Client ID nel data-client_id
+      
+      <p style="color: #999; font-size: 12px; margin-top: 2rem;">
+        Client ID non configurato? Leggi la documentazione per impostare Google OAuth.
       </p>
     </div>
-    <div id="dashboard" class="dashboard hidden">
+    
+    <!-- Dashboard Section -->
+    <div class="dashboard" id="dashboard">
+      <h2>🌟 Benvenuto!</h2>
+      
       <div class="user-info">
-        <img id="userImage" src="" alt="User" style="display:none;">
-        <p style="font-size: 1.2rem; font-weight: bold;" id="userName"></p>
-        <p id="userEmail"></p>
+        <h3>Informazioni Account</h3>
+        <div class="user-detail">
+          <strong>Nome:</strong> <span id="userName">-</span>
+        </div>
+        <div class="user-detail">
+          <strong>Email:</strong> <span id="userEmail">-</span>
+        </div>
+        <div class="user-detail">
+          <strong>ID:</strong> <span id="userId">-</span>
+        </div>
       </div>
-      <div style="background: #f9f9f9; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
-        <h2 style="color: #333; margin-bottom: 1rem;">Pannello Amministrazione</h2>
-        <p>Benvenuto! Potrai presto gestire i tuoi episodi da qui.</p>
-        <ul style="list-style: none; margin: 1.5rem 0;">
-          <li style="padding: 0.75rem; background: white; margin: 0.5rem 0; border-left: 4px solid #667eea;">Opinione Non Richiesta</li>
-          <li style="padding: 0.75rem; background: white; margin: 0.5rem 0; border-left: 4px solid #667eea;">A-Normal</li>
-          <li style="padding: 0.75rem; background: white; margin: 0.5rem 0; border-left: 4px solid #667eea;">Chiacchiere</li>
-        </ul>
+      
+      <button class="logout-btn" onclick="handleLogout()">Esci</button>
+      
+      <div class="nav-link">
+        <a href="/">← Torna alla Home</a>
       </div>
-      <button class="logout-btn" id="logoutBtn">Esci</button>
     </div>
   </div>
+  
   <script>
-    function decodeJwt(token) {
-      const parts = token.split('.');
-      const base64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(atob(base64));
-    }
+    // Initialize Google Sign-In
+    window.onload = function() {
+      const clientId = document.getElementById('g_id_onload')?.getAttribute('data-client_id');
+      
+      if (clientId === 'YOUR_GOOGLE_CLIENT_ID') {
+        showError('Client ID di Google non configurato. Contatta l\'amministratore.');
+        return;
+      }
+      
+      // Check if user is already logged in
+      const savedUser = localStorage.getItem('podcastAdminUser');
+      if (savedUser) {
+        displayDashboard(JSON.parse(savedUser));
+      }
+    };
+    
     function handleCredentialResponse(response) {
-      const decoded = decodeJwt(response.credential);
-      localStorage.setItem('adminUser', JSON.stringify({name: decoded.name, email: decoded.email, picture: decoded.picture}));
-      showDashboard({name: decoded.name, email: decoded.email, picture: decoded.picture});
+      // Decode JWT token (basic implementation)
+      const base64Url = response.credential.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split('')
+          .map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join('')
+      );
+      
+      const userData = JSON.parse(jsonPayload);
+      
+      // Save user data to localStorage
+      localStorage.setItem('podcastAdminUser', JSON.stringify(userData));
+      
+      // Display dashboard
+      displayDashboard(userData);
     }
-    function showDashboard(user) {
-      document.getElementById('loginBox').classList.add('hidden');
-      document.getElementById('dashboard').classList.remove('hidden');
-      document.getElementById('userName').textContent = user.name;
-      document.getElementById('userEmail').textContent = user.email;
-      if(user.picture) document.getElementById('userImage').src = user.picture;
+    
+    function displayDashboard(userData) {
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('dashboard').classList.add('visible');
+      
+      document.getElementById('userName').textContent = userData.name || 'Utente';
+      document.getElementById('userEmail').textContent = userData.email || '-';
+      document.getElementById('userId').textContent = userData.sub || '-';
     }
-    window.addEventListener('load', () => {
-      const saved = localStorage.getItem('adminUser');
-      if(saved) showDashboard(JSON.parse(saved));
-    });
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-      localStorage.removeItem('adminUser');
-      location.reload();
-    });
+    
+    function handleLogout() {
+      localStorage.removeItem('podcastAdminUser');
+      document.getElementById('loginSection').style.display = 'block';
+      document.getElementById('dashboard').classList.remove('visible');
+      
+      // Reload page
+      window.location.reload();
+    }
+    
+    function showError(message) {
+      const errorEl = document.getElementById('errorMessage');
+      errorEl.textContent = message;
+      errorEl.classList.add('visible');
+    }
   </script>
 </body>
 </html>
