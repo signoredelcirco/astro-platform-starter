@@ -1,60 +1,95 @@
 ---
-import PodcastLayout from '../../layouts/PodcastLayout.astro';
 ---
 
-<PodcastLayout title="Chiacchiere">
-	<section class="podcast-section">
-		<div class="podcast-header">
-			<span class="podcast-label">PODCAST & STORIE</span>
-			<h1>Chiacchiere</h1>
-			<p>Conversazioni senza filtri che meritano il tuo tempo.</p>
-			<div class="podcast-buttons">
-				<a href="/astro-platform-starter/chiacchiere" class="btn btn-primary">ESPLORA</a>
-				<a href="/astro-platform-starter/chi-sono" class="btn btn-secondary">CHI SONO</a>
-			</div>
-		</div>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Chiacchiere | Signore del Circo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #333; line-height: 1.6; }
+    header { border-bottom: 1px solid #ddd; padding: 1.5rem 2rem; background: #fff; }
+    nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: bold; }
+    nav a { margin: 0 1rem; text-decoration: none; color: #333; font-size: 0.9rem; transition: color 0.3s; }
+    nav a:hover { color: #0066cc; }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .subtitle { color: #666; font-size: 1.1rem; margin-bottom: 2rem; }
+    .episode { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid #eee; transition: all 0.3s ease-out; }
+    .episode:hover { transform: translateY(-4px); }
+    .episode h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .episode-meta { color: #999; font-size: 0.9rem; margin-bottom: 1rem; }
+    .episode p { color: #666; margin-bottom: 1rem; }
+    .player-container { margin: 1.5rem 0; padding: 1rem; background: #f9f9f9; border-radius: 8px; text-align: center; }
+    .player-link { display: inline-block; margin: 0.5rem 0.5rem 0.5rem 0; padding: 0.75rem 1.5rem; background: #0066cc; color: white; text-decoration: none; border-radius: 4px; font-size: 0.95rem; transition: background 0.3s; }
+    .player-link:hover { background: #0052a3; }
+    footer { border-top: 1px solid #ddd; padding: 2rem; margin-top: 3rem; text-align: center; color: #999; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">PODCAST</div>
+      <div>
+        <a href="/astro-platform-starter/">HOME</a>
+        <a href="/astro-platform-starter/opinione-non-richiesta/">OPINIONE NON RICHIESTA</a>
+        <a href="/astro-platform-starter/a-normal/">A-NORMAL</a>
+        <a href="/astro-platform-starter/chiacchiere/">CHIACCHIERE</a>
+        <a href="/astro-platform-starter/chi-sono/">CHI SONO</a>
+      </div>
+    </nav>
+  </header>
 
-		<div class="podcast-image">
-			<img src="/astro-platform-starter/podcast-studio.jpg" alt="Podcast studio" />
-		</div>
-	</section>
+  <div class="container">
+    <h1>Chiacchiere</h1>
+    <p class="subtitle">Conversazioni senza filtri che meritano il tuo tempo.</p>
+    
+    <div class="episode">
+      <h3>La Nuova Era del Podcasting</h3>
+      <p class="episode-meta">Episodio 1 • 45 minuti</p>
+      <p>Esplora come i podcast stanno cambiando la conversazione online e cosa significa per il nostro tempo.</p>
+      <div class="player-container">
+        <p>Ascolta su:</p>
+        <a href="#" class="player-link">🎙️ Spreaker</a>
+        <a href="#" class="player-link">🎵 Spotify</a>
+        <a href="#" class="player-link">🎧 Apple Podcasts</a>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">💡 Nota: Aggiungi il link del player qui durante la creazione</p>
+      </div>
+    </div>
+    
+    <div class="episode">
+      <h3>Storie Incredibili dai Nostri Ascoltatori</h3>
+      <p class="episode-meta">Episodio 2 • 38 minuti</p>
+      <p>Episodio speciale con testimonianze autentiche delle persone che ci seguono ogni settimana.</p>
+      <div class="player-container">
+        <p>Ascolta su:</p>
+        <a href="#" class="player-link">🎙️ Spreaker</a>
+        <a href="#" class="player-link">🎵 Spotify</a>
+        <a href="#" class="player-link">🎧 Apple Podcasts</a>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">💡 Nota: Aggiungi il link del player qui durante la creazione</p>
+      </div>
+    </div>
+    
+    <div class="episode">
+      <h3>La Passione dietro le Parole</h3>
+      <p class="episode-meta">Episodio 3 • 52 minuti</p>
+      <p>Scopri cosa spinge a creare contenuti autentico e come trovare la propria voce.</p>
+      <div class="player-container">
+        <p>Ascolta su:</p>
+        <a href="#" class="player-link">🎙️ Spreaker</a>
+        <a href="#" class="player-link">🎵 Spotify</a>
+        <a href="#" class="player-link">🎧 Apple Podcasts</a>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">💡 Nota: Aggiungi il link del player qui durante la creazione</p>
+      </div>
+    </div>
+  </div>
 
-	<section class="podcast-sections">
-		<h2>Ultimi Episodi</h2>
-		<div class="podcast-grid">
-			<div class="podcast-card transition-hover">
-				<h3>La Nuova Era del Podcasting</h3>
-				<p>Esplora come i podcast stanno cambiando la conversazione online e cosa significa per il nostro tempo.</p>
-				<span class="episode-duration">45 min</span>
-			</div>
-
-			<div class="podcast-card transition-hover">
-				<h3>Storie Incredibili dai Nostri Ascoltatori</h3>
-				<p>Episodio speciale con testimonianze autentiche delle persone che ci seguono ogni settimana.</p>
-				<span class="episode-duration">38 min</span>
-			</div>
-
-			<div class="podcast-card transition-hover">
-				<h3>La Passione dietro le Parole</h3>
-				<p>Scopri cosa spinge a creare contenuti autentico e come trovare la propria voce.</p>
-				<span class="episode-duration">52 min</span>
-			</div>
-		</div>
-	</section>
-
-	<section class="coming-soon-section">
-		<h2>Prossimamente</h2>
-		<p>Nuovi episodi di Chiacchiere in arrivo. Seguici per non perdere nulla!</p>
-	</section>
-</PodcastLayout>
-
-<style is:global>
-	.transition-hover {
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	.transition-hover:hover {
-		transform: translateY(-8px);
-		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-	}
-</style>
+  <footer>
+    <p>&copy; 2026 Signore del Circo. Tutti i diritti riservati.</p>
+  </footer>
+</body>
+</html>
