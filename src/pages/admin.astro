@@ -5,15 +5,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel | Signore del Circo</title>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <title>Admin - Gestione Articoli | Signore del Circo</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -23,101 +22,91 @@
       justify-content: center;
       padding: 20px;
     }
-    
+
     .container {
       background: white;
       border-radius: 12px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      padding: 3rem 2rem;
-      max-width: 400px;
+      max-width: 500px;
       width: 100%;
     }
-    
-    .login-section {
+
+    .login-section, .dashboard {
+      padding: 3rem 2rem;
       text-align: center;
     }
-    
+
     .login-section h1 {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       color: #333;
       font-size: 28px;
     }
-    
+
     .login-section p {
       color: #666;
       margin-bottom: 2rem;
       font-size: 14px;
     }
-    
-    #g_id_onload {
-      display: flex;
-      justify-content: center;
-    }
-    
-    .google-button-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-    
-    .dashboard {
-      display: none;
-      text-align: center;
-    }
-    
-    .dashboard.visible {
-      display: block;
-    }
-    
-    .dashboard h2 {
-      color: #333;
-      margin-bottom: 1rem;
-    }
-    
-    .user-info {
-      background: #f5f5f5;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-bottom: 2rem;
+
+    .form-group {
+      margin-bottom: 1.5rem;
       text-align: left;
     }
-    
-    .user-info h3 {
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
       color: #333;
-      margin-bottom: 1rem;
-      font-size: 16px;
-    }
-    
-    .user-detail {
-      padding: 0.5rem 0;
-      color: #666;
+      font-weight: 500;
       font-size: 14px;
-      border-bottom: 1px solid #e0e0e0;
     }
-    
-    .user-detail:last-child {
-      border-bottom: none;
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: inherit;
     }
-    
-    .user-detail strong {
-      color: #333;
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-    
-    .logout-btn {
-      background: #f44336;
-      color: white;
+
+    .btn {
+      width: 100%;
+      padding: 0.75rem;
       border: none;
-      padding: 0.75rem 2rem;
       border-radius: 4px;
       font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s;
     }
-    
-    .logout-btn:hover {
-      background: #d32f2f;
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
     }
-    
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+      margin-top: 1rem;
+    }
+
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+
     .error-message {
       display: none;
       background: #ffebee;
@@ -127,25 +116,63 @@
       margin-bottom: 1rem;
       font-size: 14px;
     }
-    
+
     .error-message.visible {
       display: block;
     }
-    
-    .nav-link {
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid #e0e0e0;
+
+    .dashboard {
+      display: none;
     }
-    
-    .nav-link a {
-      color: #667eea;
-      text-decoration: none;
+
+    .dashboard.visible {
+      display: block;
+    }
+
+    .dashboard h2 {
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .user-info {
+      background: #f5f5f5;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .user-info h3 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .user-info p {
+      color: #666;
       font-size: 14px;
+      margin-bottom: 0.5rem;
     }
-    
-    .nav-link a:hover {
-      text-decoration: underline;
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .nav-links a {
+      flex: 1;
+      padding: 0.75rem;
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: #764ba2;
     }
   </style>
 </head>
@@ -153,111 +180,113 @@
   <div class="container">
     <!-- Login Section -->
     <div class="login-section" id="loginSection">
-      <h1>🎹 Pannello Admin</h1>
-      <p>Accedi con il tuo account Google per gestire i contenuti</p>
-      
-      <div class="error-message" id="errorMessage"></div>
-      
-      <div class="google-button-wrapper">
-        <div
-          id="g_id_onload"
-          data-client_id="YOUR_GOOGLE_CLIENT_ID"
-          data-callback="handleCredentialResponse"
-        ></div>
-        <div class="g_id_signin" data-type="standard"></div>
-      </div>
-      
-      <p style="color: #999; font-size: 12px; margin-top: 2rem;">
-        Client ID non configurato? Leggi la documentazione per impostare Google OAuth.
-      </p>
+      <h1>🔐 Pannello Admin</h1>
+      <p>Accedi per gestire gli articoli dei podcast</p>
+
+      <div class="error-message" id="loginError"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Accedi</button>
+      </form>
     </div>
-    
+
     <!-- Dashboard Section -->
     <div class="dashboard" id="dashboard">
-      <h2>🌟 Benvenuto!</h2>
-      
+      <h2>📝 Dashboard Admin</h2>
+
       <div class="user-info">
         <h3>Informazioni Account</h3>
-        <div class="user-detail">
-          <strong>Nome:</strong> <span id="userName">-</span>
-        </div>
-        <div class="user-detail">
-          <strong>Email:</strong> <span id="userEmail">-</span>
-        </div>
-        <div class="user-detail">
-          <strong>ID:</strong> <span id="userId">-</span>
-        </div>
+        <p><strong>Email:</strong> <span id="userEmail">-</span></p>
+        <p id="lastLoginInfo"></p>
       </div>
-      
-      <button class="logout-btn" onclick="handleLogout()">Esci</button>
-      
-      <div class="nav-link">
-        <a href="/">← Torna alla Home</a>
+
+      <div class="nav-links">
+        <a href="/astro-platform-starter/">← Torna Home</a>
+        <button class="btn btn-secondary" onclick="handleLogout()" style="flex: 1; padding: 0.75rem; border: none; cursor: pointer;">Esci</button>
+      </div>
+
+      <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px; text-align: left;">
+        <h3 style="margin-bottom: 1rem; color: #333;">📋 Prossime Funzionalità</h3>
+        <ul style="color: #666; font-size: 14px; line-height: 1.8;">
+          <li>✓ Gestione articoli per sezione</li>
+          <li>✓ Creazione/Modifica/Eliminazione episodi</li>
+          <li>✓ Integrazione GitHub API</li>
+          <li>✓ Preview in tempo reale</li>
+        </ul>
       </div>
     </div>
   </div>
-  
+
   <script>
-    // Initialize Google Sign-In
-    window.onload = function() {
-      const clientId = document.getElementById('g_id_onload')?.getAttribute('data-client_id');
-      
-      if (clientId === 'YOUR_GOOGLE_CLIENT_ID') {
-        showError('Client ID di Google non configurato. Contatta l\'amministratore.');
-        return;
+    // Credenziali hardcoded (da cambiare in produzione)
+    const ADMIN_EMAIL = 'admin@example.com';
+    const ADMIN_PASSWORD_HASH = 'admin123'; // In produzione usare bcrypt
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      const sessionData = localStorage.getItem('adminSession');
+      if (sessionData) {
+        try {
+          const session = JSON.parse(sessionData);
+          // Verifica se la sessione è ancora valida (24 ore)
+          const sessionAge = Date.now() - session.loginTime;
+          if (sessionAge < 24 * 60 * 60 * 1000) {
+            displayDashboard(session.email);
+          } else {
+            localStorage.removeItem('adminSession');
+          }
+        } catch (e) {
+          localStorage.removeItem('adminSession');
+        }
       }
-      
-      // Check if user is already logged in
-      const savedUser = localStorage.getItem('podcastAdminUser');
-      if (savedUser) {
-        displayDashboard(JSON.parse(savedUser));
+    });
+
+    // Login form submission
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorEl = document.getElementById('loginError');
+
+      if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD_HASH) {
+        const session = {
+          email: email,
+          loginTime: Date.now()
+        };
+        localStorage.setItem('adminSession', JSON.stringify(session));
+        displayDashboard(email);
+      } else {
+        errorEl.textContent = '❌ Email o password non validi';
+        errorEl.classList.add('visible');
+        setTimeout(() => {
+          errorEl.classList.remove('visible');
+        }, 3000);
       }
-    };
-    
-    function handleCredentialResponse(response) {
-      // Decode JWT token (basic implementation)
-      const base64Url = response.credential.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(
-        atob(base64)
-          .split('')
-          .map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-          })
-          .join('')
-      );
-      
-      const userData = JSON.parse(jsonPayload);
-      
-      // Save user data to localStorage
-      localStorage.setItem('podcastAdminUser', JSON.stringify(userData));
-      
-      // Display dashboard
-      displayDashboard(userData);
-    }
-    
-    function displayDashboard(userData) {
+    });
+
+    function displayDashboard(email) {
       document.getElementById('loginSection').style.display = 'none';
       document.getElementById('dashboard').classList.add('visible');
-      
-      document.getElementById('userName').textContent = userData.name || 'Utente';
-      document.getElementById('userEmail').textContent = userData.email || '-';
-      document.getElementById('userId').textContent = userData.sub || '-';
+      document.getElementById('userEmail').textContent = email;
+
+      const sessionData = JSON.parse(localStorage.getItem('adminSession'));
+      const loginDate = new Date(sessionData.loginTime).toLocaleString('it-IT');
+      document.getElementById('lastLoginInfo').innerHTML = `<strong>Ultimo accesso:</strong> ${loginDate}`;
     }
-    
+
     function handleLogout() {
-      localStorage.removeItem('podcastAdminUser');
+      localStorage.removeItem('adminSession');
       document.getElementById('loginSection').style.display = 'block';
       document.getElementById('dashboard').classList.remove('visible');
-      
-      // Reload page
-      window.location.reload();
-    }
-    
-    function showError(message) {
-      const errorEl = document.getElementById('errorMessage');
-      errorEl.textContent = message;
-      errorEl.classList.add('visible');
+      document.getElementById('loginForm').reset();
     }
   </script>
 </body>
