@@ -1,22 +1,60 @@
 ---
-import { PodcastLayout } from '../../layouts/PodcastLayout.astro';
+import PodcastLayout from '../../layouts/PodcastLayout.astro';
 ---
 
 <PodcastLayout title="Opinione Non Richiesta">
-  <section class="podcast-section">
-    <div class="podcast-header">
-      <span class="podcast-label">PODCAST & STORIE</span>
-      <h1>Ascolta.<br/>Pensa. Rifletti.</h1>
-      <p>Storie, opinioni e conversazioni che meritano il tuo tempo.</p>
-    </div>
-    
-    <div class="podcast-image">
-      <img src="/astro-platform-starter/podcast-studio.jpg" alt="Podcast studio" />
-    </div>
-  </section>
+	<section class="podcast-section">
+		<div class="podcast-header">
+			<span class="podcast-label">PODCAST & STORIE</span>
+			<h1>Opinione Non Richiesta</h1>
+			<p>Pensieri liberi e non filtrati su argomenti che contano.</p>
+			<div class="podcast-buttons">
+				<a href="/astro-platform-starter/opinione-non-richiesta" class="btn btn-primary">ESPLORA</a>
+				<a href="/astro-platform-starter/chi-sono" class="btn btn-secondary">CHI SONO</a>
+			</div>
+		</div>
 
-  <section class="coming-soon">
-    <h2>Contenuti in arrivo</h2>
-    <p>I contenuti di questa sezione saranno presto disponibili. Torna a trovarci!</p>
-  </section>
+		<div class="podcast-image">
+			<img src="/astro-platform-starter/podcast-studio.jpg" alt="Podcast studio" />
+		</div>
+	</section>
+
+	<section class="podcast-sections">
+		<h2>Ultimi Episodi</h2>
+		<div class="podcast-grid">
+			<div class="podcast-card transition-hover">
+				<h3>Cosa Penso Veramente del Contenuto Moderno</h3>
+				<p>Un'analisi sincera su come il contenuto online sta cambiando e cosa ne penso della situazione attuale.</p>
+				<span class="episode-duration">58 min</span>
+			</div>
+
+			<div class="podcast-card transition-hover">
+				<h3>Il Lato Oscuro del Podcasting</h3>
+				<p>Una conversazione senza filtri sulle sfide, le frustrazioni e le realtà nascoste dietro il microfono.</p>
+				<span class="episode-duration">64 min</span>
+			</div>
+
+			<div class="podcast-card transition-hover">
+				<h3>Il Mio Vero Pensiero su Questo Momento</h3>
+				<p>Riflessioni profonde e senza compromessi su dove siamo ora e dove stiamo andando.</p>
+				<span class="episode-duration">71 min</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="coming-soon-section">
+		<h2>Prossimamente</h2>
+		<p>Nuovi episodi di Opinione Non Richiesta in arrivo. Seguimi per gli ultimi aggiornamenti!</p>
+	</section>
 </PodcastLayout>
+
+<style is:global>
+	.transition-hover {
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.transition-hover:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+	}
+</style>
