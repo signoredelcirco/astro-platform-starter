@@ -1,0 +1,171 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = 'PODCAST' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Podcast</title>
+    <style is:global>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background-color: #ffffff;
+        color: #000000;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header/Navigation -->
+    <header class="border-b-2 border-black sticky top-0 bg-white z-50">
+      <div class="container py-6 flex justify-between items-center">
+        <a href="/" class="text-2xl font-bold">PODCAST</a>
+        <nav class="flex gap-8 text-sm tracking-wide">
+          <a href="/" class="hover:opacity-70 transition">HOME</a>
+          <a href="/opinione-non-richiesta" class="hover:opacity-70 transition">OPINIONE NON RICHIESTA</a>
+          <a href="/a-normal" class="hover:opacity-70 transition">A-NORMAL</a>
+          <a href="/chiacchiere" class="hover:opacity-70 transition">CHIACCHIERE</a>
+          <a href="/chi-sono" class="hover:opacity-70 transition">CHI SONO</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-black mt-20 py-16 bg-white">
+      <div class="container">
+        <!-- Footer Content -->
+        <div class="grid grid-cols-3 gap-12 mb-12">
+          <!-- Brand -->
+          <div>
+            <h4 class="text-xl font-serif mb-4">PODCAST</h4>
+            <p class="text-sm text-gray-700">Storie, opinioni e conversazioni che contano.</p>
+          </div>
+
+          <!-- Links -->
+          <div>
+            <h5 class="font-semibold mb-4 text-sm tracking-wide">SEZIONI</h5>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/opinione-non-richiesta" class="hover:underline">Opinione Non Richiesta</a></li>
+              <li><a href="/a-normal" class="hover:underline">A-Normal</a></li>
+              <li><a href="/chiacchiere" class="hover:underline">Chiacchiere</a></li>
+              <li><a href="/chi-sono" class="hover:underline">Chi Sono</a></li>
+            </ul>
+          </div>
+
+          <!-- Admin -->
+          <div>
+            <h5 class="font-semibold mb-4 text-sm tracking-wide">ADMIN</h5>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" class="hover:underline">Accedi al pannello</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t-2 border-black pt-8 text-center text-sm text-gray-600">
+          <p>© 2026 — Tutti i diritti riservati</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .border-b-2 {
+    border-bottom: 2px solid black;
+  }
+
+  .border-t-2 {
+    border-top: 2px solid black;
+  }
+
+  .sticky {
+    position: sticky;
+  }
+
+  .top-0 {
+    top: 0;
+  }
+
+  .z-50 {
+    z-index: 50;
+  }
+
+  .bg-white {
+    background-color: white;
+  }
+
+  .grid {
+    display: grid;
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gap-12 {
+    gap: 3rem;
+  }
+
+  .mb-12 {
+    margin-bottom: 3rem;
+  }
+
+  .py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  .text-xl {
+    font-size: 1.25rem;
+  }
+
+  .text-sm {
+    font-size: 0.875rem;
+  }
+
+  .text-gray-700 {
+    color: #374151;
+  }
+
+  .text-gray-600 {
+    color: #4b5563;
+  }
+
+  .space-y-2 > * + * {
+    margin-top: 0.5rem;
+  }
+</style>
