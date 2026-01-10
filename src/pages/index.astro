@@ -1,81 +1,251 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import PodcastLayout from '../layouts/PodcastLayout.astro';
 ---
 
-<Layout title="Home">
-  <div class="min-h-screen bg-white">
-    <!-- Hero Section -->
-    <section class="py-20 px-8 lg:px-16">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- Left Content -->
-          <div>
-            <p class="text-sm tracking-widest text-gray-600 mb-6">PODCAST & STORIE</p>
-            <h1 class="text-6xl lg:text-7xl font-serif mb-6 leading-tight">Test Hero Title</h1>
-            <p class="text-lg text-gray-700 mb-8 leading-relaxed">Storie, opinioni e conversazioni che meritano il tuo tempo.</p>
-            
-            <div class="flex gap-4">
-              <a href="/opinione-non-richiesta" class="bg-black text-white px-8 py-3 font-semibold hover:bg-gray-800 transition">ESPLORA →</a>
-              <a href="/chi-sono" class="border-2 border-black text-black px-8 py-3 font-semibold hover:bg-black hover:text-white transition">CHI SONO</a>
-            </div>
-          </div>
-          
-          <!-- Right Image -->
-          <div class="flex justify-center">
-            <div class="w-full aspect-square bg-gray-300 border-4 border-black"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="border-b-2 border-black"></div>
-
-    <!-- Sections Grid -->
-    <section class="py-20 px-8 lg:px-16">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl font-serif mb-12">Le Sezioni</h2>
+<PodcastLayout>
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <p class="podcast-label">PODCAST & STORIE</p>
+        <h1 class="hero-title">Test Hero Title</h1>
+        <p class="hero-subtitle">Storie, opinioni e conversazioni che meritano il tuo tempo.</p>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Section 1 -->
-          <a href="/opinione-non-richiesta" class="group cursor-pointer">
-            <div class="mb-4">
-              <h3 class="text-2xl font-serif mb-2">Opinione Non Richiesta</h3>
-              <p class="text-gray-700">Pensieri liberi e non filtrati</p>
-            </div>
-            <p class="text-black font-semibold group-hover:underline">SCOPRI →</p>
-          </a>
-          
-          <!-- Section 2 -->
-          <a href="/a-normal" class="group cursor-pointer">
-            <div class="mb-4">
-              <h3 class="text-2xl font-serif mb-2">A-Normal</h3>
-              <p class="text-gray-700">Storie fuori dall'ordinario</p>
-            </div>
-            <p class="text-black font-semibold group-hover:underline">SCOPRI →</p>
-          </a>
-          
-          <!-- Section 3 -->
-          <a href="/chiacchiere" class="group cursor-pointer">
-            <div class="mb-4">
-              <h3 class="text-2xl font-serif mb-2">Chiacchiere</h3>
-              <p class="text-gray-700">Conversazioni senza filtri</p>
-            </div>
-            <p class="text-black font-semibold group-hover:underline">SCOPRI →</p>
-          </a>
+        <div class="hero-buttons">
+          <a href="/astro-platform-starter/opinione-non-richiesta" class="btn btn-primary">ESPLORA →</a>
+          <a href="/astro-platform-starter/chi-sono" class="btn btn-secondary">CHI SONO</a>
         </div>
       </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="border-b-2 border-black"></div>
-
-    <!-- Coming Soon Section -->
-    <section class="py-20 px-8 lg:px-16 text-center">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-serif mb-4">Contenuti in arrivo</h2>
-        <p class="text-lg text-gray-700">I contenuti saranno presto disponibili. Torna a trovarci!</p>
+      
+      <div class="hero-image">
+        <div class="image-placeholder"></div>
       </div>
-    </section>
+    </div>
   </div>
-</Layout>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Sections Grid -->
+  <section class="sections-section">
+    <div class="container">
+      <h2 class="section-title">Le Sezioni</h2>
+      
+      <div class="sections-grid">
+        <!-- Section 1 -->
+        <a href="/astro-platform-starter/opinione-non-richiesta" class="section-card">
+          <h3>Opinione Non Richiesta</h3>
+          <p>Pensieri liberi e non filtrati</p>
+          <span class="discover-link">SCOPRI →</span>
+        </a>
+        
+        <!-- Section 2 -->
+        <a href="/astro-platform-starter/a-normal" class="section-card">
+          <h3>A-Normal</h3>
+          <p>Storie fuori dall'ordinario</p>
+          <span class="discover-link">SCOPRI →</span>
+        </a>
+        
+        <!-- Section 3 -->
+        <a href="/astro-platform-starter/chiacchiere" class="section-card">
+          <h3>Chiacchiere</h3>
+          <p>Conversazioni senza filtri</p>
+          <span class="discover-link">SCOPRI →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Coming Soon -->
+  <section class="coming-soon-section">
+    <div class="container">
+      <h2>Contenuti in arrivo</h2>
+      <p>I contenuti saranno presto disponibili. Torna a trovarci!</p>
+    </div>
+  </section>
+</PodcastLayout>
+
+<style>
+  .hero-section {
+    padding: 40px 20px;
+    background: white;
+  }
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .podcast-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-size: 56px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+    font-weight: 700;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 30px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 15px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid black;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: black;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #333;
+  }
+
+  .btn-secondary {
+    background: white;
+    color: black;
+  }
+
+  .btn-secondary:hover {
+    background: black;
+    color: white;
+  }
+
+  .hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    border: 3px solid black;
+  }
+
+  .divider {
+    height: 2px;
+    background: black;
+    margin: 40px 0;
+  }
+
+  .sections-section {
+    padding: 40px 20px;
+    background: white;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 36px;
+    margin-bottom: 40px;
+    font-family: Georgia, serif;
+    font-weight: 700;
+  }
+
+  .sections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .section-card {
+    text-decoration: none;
+    color: inherit;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .section-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .section-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-family: Georgia, serif;
+    font-weight: 700;
+  }
+
+  .section-card p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+  .discover-link {
+    font-weight: 600;
+    font-size: 14px;
+    color: black;
+  }
+
+  .section-card:hover .discover-link {
+    text-decoration: underline;
+  }
+
+  .coming-soon-section {
+    padding: 60px 20px;
+    text-align: center;
+    background: white;
+  }
+
+  .coming-soon-section h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    font-family: Georgia, serif;
+    font-weight: 700;
+  }
+
+  .coming-soon-section p {
+    font-size: 16px;
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+    }
+
+    .sections-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+      font-size: 36px;
+    }
+  }
+</style>
