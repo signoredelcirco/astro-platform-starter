@@ -12,44 +12,19 @@ const { title = 'PODCAST' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | Podcast</title>
-    <style is:global>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: system-ui, -apple-system, sans-serif;
-        background-color: #ffffff;
-        color: #000000;
-        line-height: 1.6;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-    </style>
+    <title>{title} | PODCAST</title>
   </head>
   <body>
     <!-- Header/Navigation -->
-    <header class="border-b-2 border-black sticky top-0 bg-white z-50">
-      <div class="container py-6 flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold">PODCAST</a>
-        <nav class="flex gap-8 text-sm tracking-wide">
-          <a href="/" class="hover:opacity-70 transition">HOME</a>
-          <a href="/opinione-non-richiesta" class="hover:opacity-70 transition">OPINIONE NON RICHIESTA</a>
-          <a href="/a-normal" class="hover:opacity-70 transition">A-NORMAL</a>
-          <a href="/chiacchiere" class="hover:opacity-70 transition">CHIACCHIERE</a>
-          <a href="/chi-sono" class="hover:opacity-70 transition">CHI SONO</a>
+    <header class="header">
+      <div class="header-container">
+        <a href="/astro-platform-starter/" class="logo">PODCAST</a>
+        <nav class="nav">
+          <a href="/astro-platform-starter/">HOME</a>
+          <a href="/astro-platform-starter/opinione-non-richiesta">OPINIONE NON RICHIESTA</a>
+          <a href="/astro-platform-starter/a-normal">A-NORMAL</a>
+          <a href="/astro-platform-starter/chiacchiere">CHIACCHIERE</a>
+          <a href="/astro-platform-starter/chi-sono">CHI SONO</a>
         </nav>
       </div>
     </header>
@@ -60,38 +35,34 @@ const { title = 'PODCAST' } = Astro.props;
     </main>
 
     <!-- Footer -->
-    <footer class="border-t-2 border-black mt-20 py-16 bg-white">
-      <div class="container">
-        <!-- Footer Content -->
-        <div class="grid grid-cols-3 gap-12 mb-12">
-          <!-- Brand -->
-          <div>
-            <h4 class="text-xl font-serif mb-4">PODCAST</h4>
-            <p class="text-sm text-gray-700">Storie, opinioni e conversazioni che contano.</p>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>PODCAST</h4>
+            <p>Storie, opinioni e conversazioni che contano.</p>
           </div>
-
-          <!-- Links -->
-          <div>
-            <h5 class="font-semibold mb-4 text-sm tracking-wide">SEZIONI</h5>
-            <ul class="space-y-2 text-sm">
-              <li><a href="/opinione-non-richiesta" class="hover:underline">Opinione Non Richiesta</a></li>
-              <li><a href="/a-normal" class="hover:underline">A-Normal</a></li>
-              <li><a href="/chiacchiere" class="hover:underline">Chiacchiere</a></li>
-              <li><a href="/chi-sono" class="hover:underline">Chi Sono</a></li>
+          
+          <div class="footer-section">
+            <h5>SEZIONI</h5>
+            <ul>
+              <li><a href="/astro-platform-starter/opinione-non-richiesta">Opinione Non Richiesta</a></li>
+              <li><a href="/astro-platform-starter/a-normal">A-Normal</a></li>
+              <li><a href="/astro-platform-starter/chiacchiere">Chiacchiere</a></li>
+              <li><a href="/astro-platform-starter/chi-sono">Chi Sono</a></li>
             </ul>
           </div>
-
-          <!-- Admin -->
-          <div>
-            <h5 class="font-semibold mb-4 text-sm tracking-wide">ADMIN</h5>
-            <ul class="space-y-2 text-sm">
-              <li><a href="#" class="hover:underline">Accedi al pannello</a></li>
+          
+          <div class="footer-section">
+            <h5>ADMIN</h5>
+            <ul>
+              <li><a href="#">Accedi al pannello</a></li>
             </ul>
           </div>
         </div>
-
-        <!-- Copyright -->
-        <div class="border-t-2 border-black pt-8 text-center text-sm text-gray-600">
+        
+        <div class="footer-divider"></div>
+        <div class="footer-bottom">
           <p>© 2026 — Tutti i diritti riservati</p>
         </div>
       </div>
@@ -99,73 +70,148 @@ const { title = 'PODCAST' } = Astro.props;
   </body>
 </html>
 
-<style>
-  .border-b-2 {
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    width: 100%;
+    background: white;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #000;
+    line-height: 1.6;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    opacity: 0.7;
+  }
+
+  /* Header Styles */
+  .header {
     border-bottom: 2px solid black;
-  }
-
-  .border-t-2 {
-    border-top: 2px solid black;
-  }
-
-  .sticky {
+    padding: 20px 0;
+    background: white;
     position: sticky;
-  }
-
-  .top-0 {
     top: 0;
+    z-index: 100;
   }
 
-  .z-50 {
-    z-index: 50;
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .bg-white {
-    background-color: white;
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
   }
 
-  .grid {
+  .nav {
+    display: flex;
+    gap: 30px;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .nav a {
+    font-weight: 500;
+    transition: opacity 0.3s;
+  }
+
+  /* Main Content */
+  main {
+    min-height: calc(100vh - 300px);
+  }
+
+  /* Footer Styles */
+  .footer {
+    border-top: 2px solid black;
+    padding: 40px 0;
+    background: white;
+    margin-top: 40px;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .footer-content {
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 30px;
   }
 
-  .grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .footer-section {
+    font-size: 14px;
   }
 
-  .gap-12 {
-    gap: 3rem;
+  .footer-section h4,
+  .footer-section h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
   }
 
-  .mb-12 {
-    margin-bottom: 3rem;
+  .footer-section p {
+    font-size: 13px;
+    color: #666;
   }
 
-  .py-16 {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+  .footer-section ul {
+    list-style: none;
   }
 
-  .mb-4 {
-    margin-bottom: 1rem;
+  .footer-section ul li {
+    margin-bottom: 5px;
   }
 
-  .text-xl {
-    font-size: 1.25rem;
+  .footer-section a {
+    font-size: 13px;
+    color: #000;
   }
 
-  .text-sm {
-    font-size: 0.875rem;
+  .footer-divider {
+    height: 2px;
+    background: black;
+    margin-bottom: 20px;
   }
 
-  .text-gray-700 {
-    color: #374151;
+  .footer-bottom {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
   }
 
-  .text-gray-600 {
-    color: #4b5563;
-  }
+  /* Responsive */
+  @media (max-width: 768px) {
+    .nav {
+      gap: 15px;
+      font-size: 10px;
+    }
 
-  .space-y-2 > * + * {
-    margin-top: 0.5rem;
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
   }
 </style>
