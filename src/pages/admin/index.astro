@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Admin Panel">
+  <div class="admin-container">
+    <h1>Admin Panel - Sezioni Podcast</h1>
+    
+    <section class="articles-section">
+      <h2>Opinione Non Richiesta</h2>
+      <article class="article-item">
+        <h3>Prova 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <small>Sezione: Opinione Non Richiesta</small>
+      </article>
+    </section>
+    
+    <section class="articles-section">
+      <h2>A-Normal Podcast</h2>
+      <article class="article-item">
+        <h3>Prova 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <small>Sezione: A-Normal Podcast</small>
+      </article>
+    </section>
+    
+    <section class="articles-section">
+      <h2>Chiacchiere</h2>
+      <article class="article-item">
+        <h3>Prova 3</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <small>Sezione: Chiacchiere</small>
+      </article>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    font-family: Georgia, serif;
+  }
+  
+  .articles-section {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .articles-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+  }
+  
+  .article-item {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  .article-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .article-item p {
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  
+  .article-item small {
+    color: #999;
+    font-size: 12px;
+  }
+</style>
