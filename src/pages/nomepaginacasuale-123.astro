@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { saveArticle, getArticlesBySection } from '../utils/articles';
 ---
 
 <Layout title="Admin - Gestione Articoli | Signore del Circo">
@@ -8,12 +9,15 @@ import Layout from '../layouts/Layout.astro';
       <h1>Admin Dashboard</h1>
       <button id="logoutBtn" class="logout-btn">Esci</button>
     </div>
-    
+
     <div class="admin-tabs">
       <button class="tab-btn active" data-tab="articoli">Articoli</button>
+      <button class="tab-btn" data-tab="home">Home</button>
+      <button class="tab-btn" data-tab="chisono">Chi Sono</button>
       <button class="tab-btn" data-tab="account">Account</button>
     </div>
 
+    <!-- TAB ARTICOLI -->
     <div id="articoli" class="tab-content active">
       <h2>Nuovo Articolo</h2>
       <form id="articleForm">
@@ -57,20 +61,85 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="btn-primary">Pubblica Articolo</button>
+          <button type="submit" class="btn-primary">Pubblica Articolo su Supabase</button>
           <button type="reset" class="btn-secondary">Cancella</button>
         </div>
       </form>
 
       <div class="recent-articles">
         <h3>Articoli Recenti</h3>
-        <div id="recentArticles" class="articles-list"></div>
+        <div id="recentArticles" class="articles-list">
+          <p style="color: #999;">Nessun articolo trovato. Crea il tuo primo articolo!</p>
+        </div>
       </div>
     </div>
 
+    <!-- TAB HOME -->
+    <div id="home" class="tab-content">
+      <h2>Gestisci Home Page</h2>
+      <form id="homeForm">
+        <div class="form-group">
+          <label for="homeTitle">Titolo Principale</label>
+          <input type="text" id="homeTitle" placeholder="Es: Benvenuto nel mio sito">
+        </div>
+        <div class="form-group">
+          <label for="homeSubtitle">Sottotitolo</label>
+          <input type="text" id="homeSubtitle" placeholder="Es: Podcast e articoli interessanti">
+        </div>
+        <div class="form-group">
+          <label for="homeDescription">Descrizione</label>
+          <textarea id="homeDescription" placeholder="Descrizione della home page"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-primary" id="saveHomeBtn">Salva Modifiche</button>
+          <button type="reset" class="btn-secondary">Annulla</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- TAB CHI SONO -->
+    <div id="chisono" class="tab-content">
+      <h2>Gestisci Chi Sono</h2>
+      <form id="chisonoForm">
+        <div class="form-group">
+          <label for="chisonoTitle">Titolo</label>
+          <input type="text" id="chisonoTitle" placeholder="Chi sono?">
+        </div>
+        <div class="form-group">
+          <label for="chisonoContent">Contenuto</label>
+          <textarea id="chisonoContent" placeholder="Scrivi una breve biografia..." style="min-height: 300px;"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="chisonoImage">URL Immagine Profilo</label>
+          <input type="url" id="chisonoImage" placeholder="https://...">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-primary" id="saveChisonoBtn">Salva Modifiche</button>
+          <button type="reset" class="btn-secondary">Annulla</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- TAB ACCOUNT -->
     <div id="account" class="tab-content">
-      <h2>Account</h2>
-      <p>Account management section</p>
+      <h2>Gestione Account</h2>
+      <div class="sessions-container">
+        <h3>Sessioni Attive</h3>
+        <table class="sessions-table">
+          <thead>
+            <tr>
+              <th>Data/Ora Login</th>
+              <th>Device/Browser</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody id="sessionsList">
+            <tr>
+              <td colspan="3" style="text-align: center; color: #999;">Nessuna sessione registrata</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </Layout>
@@ -106,6 +175,7 @@ import Layout from '../layouts/Layout.astro';
     gap: 20px;
     margin-bottom: 30px;
     border-bottom: 2px solid #f0f0f0;
+    flex-wrap: wrap;
   }
 
   .tab-btn {
@@ -134,12 +204,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   .form-group {
@@ -162,6 +228,7 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 4px;
     font-size: 14px;
     font-family: inherit;
+    box-sizing: border-box;
   }
 
   .form-group textarea {
@@ -173,6 +240,7 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     gap: 10px;
     margin-top: 30px;
+    flex-wrap: wrap;
   }
 
   .btn-primary {
@@ -233,85 +301,179 @@ import Layout from '../layouts/Layout.astro';
     color: #666;
     font-size: 14px;
   }
+
+  .sessions-container {
+    margin-top: 20px;
+  }
+
+  .sessions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .sessions-table th,
+  .sessions-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .sessions-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+  }
 </style>
 
 <script is:inline>
-  // Tab switching with smooth transitions
+  // Tab switching
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tabName = btn.getAttribute('data-tab');
-      
-      // Remove active class from all tabs and contents
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      
-      // Add active class to clicked tab and corresponding content
       btn.classList.add('active');
       document.getElementById(tabName).classList.add('active');
     });
   });
 
-  // Article form submission with localStorage
+  // Article form submission with localStorage (test)
   const articleForm = document.getElementById('articleForm');
-  
   articleForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     const article = {
       id: Date.now(),
-      section: document.getElementById('section').value,
       title: document.getElementById('title').value,
-      description: document.getElementById('description').value,
-      duration: document.getElementById('duration').value || '',
-      spreaker: document.getElementById('spreaker').value || '',
-      spotify: document.getElementById('spotify').value || '',
-      applePodcasts: document.getElementById('applePodcasts').value || '',
+      content: document.getElementById('description').value,
+      section: document.getElementById('section').value,
       createdAt: new Date().toISOString()
     };
-    
-    // Get existing articles from localStorage
-    let articles = JSON.parse(localStorage.getItem('podcast_articles') || '[]');
-    articles.push(article);
-    
-    // Save to localStorage
-    localStorage.setItem('podcast_articles', JSON.stringify(articles));
-    
-    // Reset form
-    articleForm.reset();
-    
-    // Update recent articles display
-    displayRecentArticles();
+
+    try {
+      let articles = JSON.parse(localStorage.getItem('podcast_articles') || '[]');
+      articles.push(article);
+      localStorage.setItem('podcast_articles', JSON.stringify(articles));
+      alert('✅ Articolo salvato!');
+      articleForm.reset();
+      displayRecentArticles();
+    } catch (error) {
+      alert('❌ Errore: ' + error.message);
+      console.error('Errore:', error);
+    }
   });
 
   // Display recent articles
   function displayRecentArticles() {
-    const articles = JSON.parse(localStorage.getItem('podcast_articles') || '[]');
-    const container = document.getElementById('recentArticles');
+    try {
+      const articles = JSON.parse(localStorage.getItem('podcast_articles') || '[]');
+      const container = document.getElementById('recentArticles');
+      
+      if (articles.length > 0) {
+        container.innerHTML = articles.map(article => `
+          <div class="article-item">
+            <h4>${article.title}</h4>
+            <p><strong>Sezione:</strong> ${article.section}</p>
+            <p>${article.content.substring(0, 100)}...</p>
+            <p style="color: #999; font-size: 12px;">Creato: ${new Date(article.createdAt).toLocaleString('it-IT')}</p>
+          </div>
+        `).join('');
+      } else {
+        container.innerHTML = '<p style="color: #999;">Nessun articolo trovato. Crea il tuo primo articolo!</p>';
+      }
+    } catch (error) {
+      console.error('Errore nel caricamento articoli:', error);
+    }
+  }
+
+  displayRecentArticles();
+
+  // Home page management
+  document.getElementById('saveHomeBtn')?.addEventListener('click', () => {
+    const homeData = {
+      title: document.getElementById('homeTitle').value,
+      subtitle: document.getElementById('homeSubtitle').value,
+      description: document.getElementById('homeDescription').value
+    };
+    localStorage.setItem('home_data', JSON.stringify(homeData));
+    alert('✅ Home page salvata!');
+  });
+
+  // Chi Sono management
+  document.getElementById('saveChisonoBtn')?.addEventListener('click', () => {
+    const chisonoData = {
+      title: document.getElementById('chisonoTitle').value,
+      content: document.getElementById('chisonoContent').value,
+      image: document.getElementById('chisonoImage').value
+    };
+    localStorage.setItem('chisono_data', JSON.stringify(chisonoData));
+    alert('✅ Pagina Chi Sono salvata!');
+  });
+
+  // Load existing data
+  function loadSavedData() {
+    const homeData = localStorage.getItem('home_data');
+    if (homeData) {
+      const data = JSON.parse(homeData);
+      document.getElementById('homeTitle').value = data.title || '';
+      document.getElementById('homeSubtitle').value = data.subtitle || '';
+      document.getElementById('homeDescription').value = data.description || '';
+    }
+
+    const chisonoData = localStorage.getItem('chisono_data');
+    if (chisonoData) {
+      const data = JSON.parse(chisonoData);
+      document.getElementById('chisonoTitle').value = data.title || '';
+      document.getElementById('chisonoContent').value = data.content || '';
+      document.getElementById('chisonoImage').value = data.image || '';
+    }
+  }
+  loadSavedData();
+
+  // Session management
+  function initializeSession() {
+    let sessions = JSON.parse(sessionStorage.getItem('admin_sessions') || '[]');
+    const currentSession = {
+      id: crypto.randomUUID(),
+      loginTime: new Date().toLocaleString('it-IT'),
+      device: navigator.userAgent.substring(0, 50)
+    };
+    sessions.push(currentSession);
+    sessionStorage.setItem('admin_sessions', JSON.stringify(sessions));
+    displaySessions();
+  }
+
+  function displaySessions() {
+    const sessions = JSON.parse(sessionStorage.getItem('admin_sessions') || '[]');
+    const tbody = document.getElementById('sessionsList');
     
-    if (articles.length === 0) {
-      container.innerHTML = '<p style="color: #999;">Nessun articolo trovato. Crea il tuo primo articolo!</p>';
+    if (sessions.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #999;">Nessuna sessione registrata</td></tr>';
       return;
     }
-    
-    // Show most recent articles first
-    const sortedArticles = articles.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    
-    container.innerHTML = sortedArticles.map(article => `
-      <div class="article-item">
-        <h4>${article.title}</h4>
-        <p><strong>Sezione:</strong> ${article.section}</p>
-        <p><strong>Durata:</strong> ${article.duration || 'N/A'}</p>
-        <p>${article.description.substring(0, 100)}...</p>
-      </div>
+
+    tbody.innerHTML = sessions.map((session, index) => `
+      <tr>
+        <td>${session.loginTime}</td>
+        <td>${session.device}</td>
+        <td><button onclick="removeSession(${index})" style="cursor: pointer; background: #ff5252; color: white; border: none; padding: 5px 10px; border-radius: 3px;">Logout</button></td>
+      </tr>
     `).join('');
   }
 
-  // Load recent articles on page load
-  displayRecentArticles();
+  window.removeSession = function(index) {
+    let sessions = JSON.parse(sessionStorage.getItem('admin_sessions') || '[]');
+    sessions.splice(index, 1);
+    sessionStorage.setItem('admin_sessions', JSON.stringify(sessions));
+    displaySessions();
+  }
+
+  initializeSession();
 
   // Logout button
   document.getElementById('logoutBtn').addEventListener('click', () => {
     localStorage.removeItem('admin_session');
+    sessionStorage.clear();
     window.location.href = '/';
   });
 </script>
