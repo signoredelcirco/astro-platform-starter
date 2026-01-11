@@ -3,83 +3,384 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Admin Panel">
-  <div class="admin-container">
-    <h1>Admin Panel - Sezioni Podcast</h1>
-    
-    <section class="articles-section">
-      <h2>Opinione Non Richiesta</h2>
-      <article class="article-item">
-        <h3>Prova 1</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <small>Sezione: Opinione Non Richiesta</small>
-      </article>
-    </section>
-    
-    <section class="articles-section">
-      <h2>A-Normal Podcast</h2>
-      <article class="article-item">
-        <h3>Prova 2</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <small>Sezione: A-Normal Podcast</small>
-      </article>
-    </section>
-    
-    <section class="articles-section">
-      <h2>Chiacchiere</h2>
-      <article class="article-item">
-        <h3>Prova 3</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <small>Sezione: Chiacchiere</small>
-      </article>
-    </section>
-  </div>
-</Layout>
+  <div class="admin-wrapper">
+    <div id="auth-container" class="auth-container">
+      <div class="auth-box">
+        <h1>Admin Panel</h1>
+        <form id="login-form" class="login-form">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
 
-<style>
-  .admin-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
-  
-  h1 {
-    font-size: 36px;
-    margin-bottom: 40px;
-    font-family: Georgia, serif;
-  }
-  
-  .articles-section {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .articles-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-family: Georgia, serif;
-  }
-  
-  .article-item {
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 4px;
-    margin-bottom: 15px;
-  }
-  
-  .article-item h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .article-item p {
-    color: #666;
-    margin-bottom: 10px;
-    line-height: 1.6;
-  }
-  
-  .article-item small {
-    color: #999;
-    font-size: 12px;
-  }
-</style>
+    <div id="dashboard" class="dashboard" style="display: none;">
+      <div class="dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <button id="logout-btn" class="btn btn-secondary">Logout</button>
+      </div>
+
+      <div class="dashboard-content">
+        <!-- Add New Article Form -->
+        <section class="form-section">
+          <h2>Aggiungi Nuovo Articolo</h2>
+          <form id="article-form" class="article-form">
+            <div class="form-group">
+              <label for="article-section">Sezione:</label>
+              <select id="article-section" name="section" required>
+                <option value="">Seleziona sezione...</option>
+                <option value="opinione-non-richiesta">Opinione Non Richiesta</option>
+                <option value="a-normal">A-Normal Podcast</option>
+                <option value="chiacchiere">Chiacchiere</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="article-title">Titolo:</label>
+              <input type="text" id="article-title" name="title" required />
+            </div>
+            <div class="form-group">
+              <label for="article-content">Contenuto:</label>
+              <textarea id="article-content" name="content" required rows="8"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="article-description">Descrizione Breve:</label>
+              <input type="text" id="article-description" name="description" />
+            </div>
+            <button type="submit" class="btn btn-primary">Salva Articolo</button>
+          </form>
+        </section>
+
+        <!-- Articles List -->
+        <section class="articles-section">
+          <h2>Articoli Pubblicati</h2>
+          <div id="articles-list" class="articles-list"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .admin-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .auth-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 50vh;
+    }
+
+    .auth-box {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .auth-box h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .login-form .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #17a2b8;
+      box-shadow: 0 0 0 2px rgba(23, 162, 184, 0.1);
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #17a2b8;
+      color: white;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: #138496;
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #5a6268;
+    }
+
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    .btn-danger:hover {
+      background: #c82333;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .dashboard-header h1 {
+      margin: 0;
+      color: #333;
+    }
+
+    .form-section,
+    .articles-section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-section h2,
+    .articles-section h2 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .article-item {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      border-left: 4px solid #17a2b8;
+    }
+
+    .article-item h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+      font-size: 18px;
+    }
+
+    .article-meta {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .article-content {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 10px;
+      max-height: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .article-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .article-item button {
+      margin: 0;
+      width: auto;
+    }
+
+    @media (max-width: 768px) {
+      .auth-box {
+        padding: 20px;
+      }
+
+      .dashboard-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+
+      .dashboard-header .btn {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script>
+    // Admin credentials (in production, use a proper authentication system)
+    const ADMIN_USERNAME = 'admin';
+    const ADMIN_PASSWORD = 'password123';
+    const STORAGE_KEY = 'articles_data';
+
+    const loginForm = document.getElementById('login-form');
+    const authContainer = document.getElementById('auth-container');
+    const dashboard = document.getElementById('dashboard');
+    const articleForm = document.getElementById('article-form');
+    const articlesList = document.getElementById('articles-list');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    // Check if user is already logged in
+    function checkAuthStatus() {
+      const isLoggedIn = localStorage.getItem('admin_logged_in') === 'true';
+      if (isLoggedIn) {
+        showDashboard();
+      } else {
+        showLogin();
+      }
+    }
+
+    // Show login form
+    function showLogin() {
+      authContainer.style.display = 'flex';
+      dashboard.style.display = 'none';
+    }
+
+    // Show dashboard
+    function showDashboard() {
+      authContainer.style.display = 'none';
+      dashboard.style.display = 'block';
+      loadArticles();
+    }
+
+    // Handle login
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        localStorage.setItem('admin_logged_in', 'true');
+        showDashboard();
+        loginForm.reset();
+      } else {
+        alert('Username o password non corretti!');
+      }
+    });
+
+    // Handle logout
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('admin_logged_in');
+      showLogin();
+      loginForm.reset();
+    });
+
+    // Load articles from localStorage
+    function loadArticles() {
+      const articlesData = localStorage.getItem(STORAGE_KEY);
+      const articles = articlesData ? JSON.parse(articlesData) : [];
+      
+      articlesList.innerHTML = '';
+      
+      if (articles.length === 0) {
+        articlesList.innerHTML = '<p>Nessun articolo pubblicato.</p>';
+        return;
+      }
+
+      articles.forEach((article, index) => {
+        const articleItem = document.createElement('div');
+        articleItem.className = 'article-item';
+        articleItem.innerHTML = `
+          <h3>${article.title}</h3>
+          <div class="article-meta">Sezione: <strong>${article.section}</strong></div>
+          <div class="article-content">${article.content}</div>
+          <div class="article-actions">
+            <button class="btn btn-danger" onclick="deleteArticle(${index})">Elimina</button>
+          </div>
+        `;
+        articlesList.appendChild(articleItem);
+      });
+    }
+
+    // Save article
+    articleForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const section = document.getElementById('article-section').value;
+      const title = document.getElementById('article-title').value;
+      const content = document.getElementById('article-content').value;
+      const description = document.getElementById('article-description').value;
+
+      if (!section || !title || !content) {
+        alert('Per favore compila tutti i campi obbligatori!');
+        return;
+      }
+
+      const articlesData = localStorage.getItem(STORAGE_KEY);
+      let articles = articlesData ? JSON.parse(articlesData) : [];
+
+      const newArticle = {
+        id: Date.now(),
+        section,
+        title,
+        content,
+        description,
+        createdAt: new Date().toLocaleDateString('it-IT')
+      };
+
+      articles.push(newArticle);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(articles));
+
+      articleForm.reset();
+      loadArticles();
+      alert('Articolo salvato con successo!');
+    });
+
+    // Delete article
+    window.deleteArticle = function(index) {
+      if (confirm('Sei sicuro di voler eliminare questo articolo?')) {
+        const articlesData = localStorage.getItem(STORAGE_KEY);
+        let articles = articlesData ? JSON.parse(articlesData) : [];
+        articles.splice(index, 1);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(articles));
+        loadArticles();
+      }
+    };
+
+    // Initialize
+    checkAuthStatus();
+  </script>
+</Layout>
