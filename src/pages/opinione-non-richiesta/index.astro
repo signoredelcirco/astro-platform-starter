@@ -1,117 +1,47 @@
 ---
-import Layout from '.././layouts/Layout.astro';
-import { getArticlesBySection } from '../utils/articles';
-
-const articles = await getArticlesBySection('Opinione Non Richiesta');
+import PodcastLayout from '../../layouts/PodcastLayout.astro';
 ---
 
-<Layout title="Opinione Non Richiesta | Signore del Circo">
-  <div class="container">
+<PodcastLayout>
+  <div class="section-container">
     <h1>Opinione Non Richiesta</h1>
-    <p class="subtitle">Pensieri liberi e non filtrati su argomenti che contano.</p>
+    <p>Pensieri liberi e non filtrati sugli argomenti che contano.</p>
     
-    {articles && articles.length > 0 ? (
-      <div class="articles-list">
-        {articles.map((article) => (
-          <div class="episode">
-            <h3>{article.title}</h3>
-            <p class="episode-meta">Articolo • {new Date(article.created_at).toLocaleDateString('it-IT')}</p>
-            <p>{article.content}</p>
-            <div class="player-container">
-              <p>Ascolta su:</p>
-              <a href="#" class="player-link">🎙️ Spreaker</a>
-              <a href="#" class="player-link">🎵 Spotify</a>
-              <a href="#" class="player-link">🎧 Apple Podcasts</a>
-            </div>
-          </div>
-        ))}
-      </div>
-    ) : (
-      <p>Nessun articolo disponibile in questa sezione.</p>
-    )}
+    <div class="articles">
+      <article>
+        <h2>Articolo di Prova</h2>
+        <p>Questa è una sezione dedicata alle mie opinioni senza filtri su vari argomenti.</p>
+      </article>
+    </div>
   </div>
-</Layout>
+</PodcastLayout>
 
 <style>
-  .container {
-    max-width: 900px;
+  .section-container {
+    max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
   }
-
+  
   h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
   }
-
-  .subtitle {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 40px;
+  
+  .articles {
+    margin-top: 40px;
   }
-
-  .articles-list {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .episode {
+  
+  article {
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-
-  .episode h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.3rem;
-    color: #333;
-  }
-
-  .episode-meta {
-    font-size: 0.9rem;
-    color: #999;
-    margin: 5px 0 15px 0;
-  }
-
-  .episode p {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-
-  .player-container {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-  }
-
-  .player-container p {
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
-
-  .player-link {
-    display: inline-block;
-    margin-right: 15px;
-    padding: 8px 15px;
-    background-color: #3b82f6;
-    color: white;
-    text-decoration: none;
+    margin-bottom: 20px;
+    background: #f9f9f9;
     border-radius: 4px;
-    transition: background-color 0.2s;
   }
-
-  .player-link:hover {
-    background-color: #2563eb;
-  }
-
-  footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: #999;
-    font-size: 0.9rem;
+  
+  article h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
   }
 </style>
