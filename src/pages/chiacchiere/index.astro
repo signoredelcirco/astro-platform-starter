@@ -1,95 +1,117 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import { getArticlesBySection } from '../utils/articles';
+
+const articles = await getArticlesBySection('Chiacchiere');
 ---
 
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>Chiacchiere | Signore del Circo</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #333; line-height: 1.6; }
-    header { border-bottom: 1px solid #ddd; padding: 1.5rem 2rem; background: #fff; }
-    nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.5rem; font-weight: bold; }
-    nav a { margin: 0 1rem; text-decoration: none; color: #333; font-size: 0.9rem; transition: color 0.3s; }
-    nav a:hover { color: #0066cc; }
-    .container { max-width: 900px; margin: 0 auto; padding: 2rem; animation: fadeIn 0.4s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    .subtitle { color: #666; font-size: 1.1rem; margin-bottom: 2rem; }
-    .episode { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid #eee; transition: all 0.3s ease-out; }
-    .episode:hover { transform: translateY(-4px); }
-    .episode h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .episode-meta { color: #999; font-size: 0.9rem; margin-bottom: 1rem; }
-    .episode p { color: #666; margin-bottom: 1rem; }
-    .player-container { margin: 1.5rem 0; padding: 1rem; background: #f9f9f9; border-radius: 8px; text-align: center; }
-    .player-link { display: inline-block; margin: 0.5rem 0.5rem 0.5rem 0; padding: 0.75rem 1.5rem; background: #0066cc; color: white; text-decoration: none; border-radius: 4px; font-size: 0.95rem; transition: background 0.3s; }
-    .player-link:hover { background: #0052a3; }
-    footer { border-top: 1px solid #ddd; padding: 2rem; margin-top: 3rem; text-align: center; color: #999; font-size: 0.9rem; }
-  </style>
-</head>
-<body>
-  <header>
-    <nav>
-      <div class="logo">PODCAST</div>
-      <div>
-        <a href="/astro-platform-starter/">HOME</a>
-        <a href="/astro-platform-starter/opinione-non-richiesta/">OPINIONE NON RICHIESTA</a>
-        <a href="/astro-platform-starter/a-normal/">A-NORMAL</a>
-        <a href="/astro-platform-starter/chiacchiere/">CHIACCHIERE</a>
-        <a href="/astro-platform-starter/chi-sono/">CHI SONO</a>
-      </div>
-    </nav>
-  </header>
-
+<Layout title="Chiacchiere | Signore del Circo">
   <div class="container">
     <h1>Chiacchiere</h1>
-    <p class="subtitle">Conversazioni senza filtri che meritano il tuo tempo.</p>
+    <p class="subtitle">Conversazioni leggere e spesso inaspettate su vari argomenti.</p>
     
-    <div class="episode">
-      <h3>La Nuova Era del Podcasting</h3>
-      <p class="episode-meta">Episodio 1 • 45 minuti</p>
-      <p>Esplora come i podcast stanno cambiando la conversazione online e cosa significa per il nostro tempo.</p>
-      <div class="player-container">
-        <p>Ascolta su:</p>
-        <a href="#" class="player-link">🎙️ Spreaker</a>
-        <a href="#" class="player-link">🎵 Spotify</a>
-        <a href="#" class="player-link">🎧 Apple Podcasts</a>
-        <p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">💡 Nota: Aggiungi il link del player qui durante la creazione</p>
+    {articles && articles.length > 0 ? (
+      <div class="articles-list">
+        {articles.map((article) => (
+          <div class="episode">
+            <h3>{article.title}</h3>
+            <p class="episode-meta">Articolo • {new Date(article.created_at).toLocaleDateString('it-IT')}</p>
+            <p>{article.content}</p>
+            <div class="player-container">
+              <p>Ascolta su:</p>
+              <a href="#" class="player-link">🎙️ Spreaker</a>
+              <a href="#" class="player-link">🎵 Spotify</a>
+              <a href="#" class="player-link">🎧 Apple Podcasts</a>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-    
-    <div class="episode">
-      <h3>Storie Incredibili dai Nostri Ascoltatori</h3>
-      <p class="episode-meta">Episodio 2 • 38 minuti</p>
-      <p>Episodio speciale con testimonianze autentiche delle persone che ci seguono ogni settimana.</p>
-      <div class="player-container">
-        <p>Ascolta su:</p>
-        <a href="#" class="player-link">🎙️ Spreaker</a>
-        <a href="#" class="player-link">🎵 Spotify</a>
-        <a href="#" class="player-link">🎧 Apple Podcasts</a>
-        <p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">💡 Nota: Aggiungi il link del player qui durante la creazione</p>
-      </div>
-    </div>
-    
-    <div class="episode">
-      <h3>La Passione dietro le Parole</h3>
-      <p class="episode-meta">Episodio 3 • 52 minuti</p>
-      <p>Scopri cosa spinge a creare contenuti autentico e come trovare la propria voce.</p>
-      <div class="player-container">
-        <p>Ascolta su:</p>
-        <a href="#" class="player-link">🎙️ Spreaker</a>
-        <a href="#" class="player-link">🎵 Spotify</a>
-        <a href="#" class="player-link">🎧 Apple Podcasts</a>
-        <p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">💡 Nota: Aggiungi il link del player qui durante la creazione</p>
-      </div>
-    </div>
+    ) : (
+      <p>Nessun articolo disponibile in questa sezione.</p>
+    )}
   </div>
+</Layout>
 
-  <footer>
-    <p>&copy; 2026 Signore del Circo. Tutti i diritti riservati.</p>
-  </footer>
-</body>
-</html>
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
+  }
+
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .episode {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+
+  .episode h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+    color: #333;
+  }
+
+  .episode-meta {
+    font-size: 0.9rem;
+    color: #999;
+    margin: 5px 0 15px 0;
+  }
+
+  .episode p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .player-container {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+  }
+
+  .player-container p {
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .player-link {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 8px 15px;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .player-link:hover {
+    background-color: #2563eb;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+    font-size: 0.9rem;
+  }
+</style>
