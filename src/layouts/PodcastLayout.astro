@@ -14,56 +14,10 @@ const { title = 'PODCAST' } = Astro.props as Props;
     <title>{title} | PODCAST</title>
   </head>
   <body>
-    <!-- Header/Navigation -->
-    <header class="header">
-      <div class="header-container">
-        <a href="/astro-platform-starter/" class="logo">PODCAST</a>
-        <nav class="nav">
-          <a href="/astro-platform-starter/">HOME</a>
-          <a href="/astro-platform-starter/opinione-non-richiesta">OPINIONE NON RICHIESTA</a>
-          <a href="/astro-platform-starter/a-normal">A-NORMAL</a>
-          <a href="/astro-platform-starter/chiacchiere">CHIACCHIERE</a>
-          <a href="/astro-platform-starter/chi-sono">CHI SONO</a>
-        </nav>
-      </div>
-    </header>
     <!-- Main Content -->
     <main>
       <slot />
     </main>
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-content">
-          <div class="footer-section">
-            <h4>PODCAST</h4>
-            <p>Storie, opinioni e conversazioni che contano.</p>
-          </div>
-          
-          <div class="footer-section">
-            <h5>SEZIONI</h5>
-            <ul>
-              <li><a href="/astro-platform-starter/opinione-non-richiesta">Opinione Non Richiesta</a></li>
-              <li><a href="/astro-platform-starter/a-normal">A-Normal</a></li>
-              <li><a href="/astro-platform-starter/chiacchiere">Chiacchiere</a></li>
-              <li><a href="/astro-platform-starter/chi-sono">Chi Sono</a></li>
-            </ul>
-          </div>
-          
-          <div class="footer-section">
-            <h5>ADMIN</h5>
-            <ul>
-              <li><a href="#">Accedi al pannello</a></li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="footer-divider"></div>
-        <div class="footer-bottom">
-          <p>© 2026 — Tutti i diritti riservati</p>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
 <style is:global>
