@@ -2,61 +2,141 @@
 import Logo from '../components/Logo.astro';
 ---
 
-<nav class="flex flex-wrap items-center justify-between gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-  <a href="/">
-    <Logo />
-  </a>
-  
-  <ul class="flex flex-wrap gap-x-6 gap-y-2 items-center">
-    <!-- Home link -->
-    <li>
-      <a href="/" class="inline-block px-3 py-2 hover:text-blue-400 transition-colors">
-        Home
-      </a>
-    </li>
+<header class="header">
+  <nav class="nav-container">
+    <a href="/" class="logo-link">
+      <Logo />
+    </a>
     
-    <!-- Podcast dropdown -->
-    <li class="relative group">
-      <button class="inline-block px-3 py-2 hover:text-blue-400 transition-colors flex items-center gap-2">
-        I Podcast del Signore del Circo
-        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-      </button>
+    <ul class="nav-menu">
+      <!-- Home -->
+      <li>
+        <a href="/" class="nav-link">Home</a>
+      </li>
       
-      <!-- Dropdown menu -->
-      <ul class="absolute left-0 mt-0 w-56 bg-complementary border border-gray-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
-        <li>
-          <a href="/opinione-non-richiesta" class="block px-4 py-2 hover:bg-gray-800 transition-colors">
-            Opinione Non Richiesta
-          </a>
-        </li>
-        <li>
-          <a href="/a-normal" class="block px-4 py-2 hover:bg-gray-800 transition-colors">
-            A-Normal Podcast
-          </a>
-        </li>
-        <li>
-          <a href="/chiacchiere" class="block px-4 py-2 hover:bg-gray-800 transition-colors">
-            Chiacchiere
-          </a>
-        </li>
-      </ul>
-    </li>
-    
-    <!-- Chi Sono link -->
-    <li>
-      <a href="/chi-sono" class="inline-block px-3 py-2 hover:text-blue-400 transition-colors">
-        Chi Sono
-      </a>
-    </li>
-  </ul>
-</nav>
+      <!-- Podcasts Dropdown -->
+      <li class="nav-item-dropdown">
+        <button class="nav-link nav-toggle">I Podcast del Signore del Circo</button>
+        <ul class="dropdown-menu">
+          <li><a href="/opinione-non-richiesta">Opinione Non Richiesta</a></li>
+          <li><a href="/a-normal">A-Normal Podcast</a></li>
+          <li><a href="/chiacchiere">Chiacchiere</a></li>
+        </ul>
+      </li>
+      
+      <!-- Chi Sono -->
+      <li>
+        <a href="/chi-sono" class="nav-link">Chi Sono</a>
+      </li>
+    </ul>
+  </nav>
+</header>
 
 <style>
-  /* Hover effect for dropdown */
-  li.group:hover > ul {
+  .header {
+    background: white;
+    border-bottom: 2px solid black;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+  }
+  
+  .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-link {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: black;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    transition: opacity 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    opacity: 0.7;
+  }
+  
+  .nav-item-dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    list-style: none;
+    margin: 8px 0 0 0;
+    padding: 0;
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+  
+  .nav-item-dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .dropdown-menu li {
+    padding: 0;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s ease;
+  }
+  
+  .dropdown-menu a:hover {
+    background: #f5f5f5;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-menu {
+      gap: 20px;
+      font-size: 12px;
+    }
+    
+    .nav-container {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 15px 20px;
+    }
   }
 </style>
