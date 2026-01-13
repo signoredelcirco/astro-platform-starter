@@ -10,9 +10,9 @@ media_folder: "src/assets"
 public_folder: "/assets"
 
 collections:
-  - name: "articoli"
-    label: "Articoli"
-    folder: "src/content/blog"
+  - name: "a_normal_opinion"
+    label: "A-Normal Opinion"
+    folder: "src/content/a_normal_opinion"
     create: true
     slug: "{{slug}}"
     fields:
@@ -21,49 +21,6 @@ collections:
       - { label: "Autore", name: "author", widget: "string", default: "Signore del Circo" }
       - { label: "Data di pubblicazione", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Immagine copertina", name: "heroImage", widget: "image", required: false }
+      - { label: "Link audio (Spotify/Player)", name: "audio_url", widget: "string", required: false }
+      - { label: "Link YouTube video", name: "youtube_url", widget: "string", required: false }
       - { label: "Corpo articolo", name: "body", widget: "markdown", required: true }
-  
-  - name: "podcast"
-    label: "Puntate Podcast"
-    folder: "src/content/podcast"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Titolo", name: "title", widget: "string", required: true }
-      - { label: "Descrizione", name: "description", widget: "text", required: true }
-      - { label: "Numero episodio", name: "episode_number", widget: "number", value_type: "int" }
-      - { label: "Data di uscita", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD" }
-      - { label: "Link audio/Spotify", name: "audio_url", widget: "string", required: true }
-      - { label: "Durata", name: "duration", widget: "string", hint: "Es: 45:30" }
-      - { label: "Note", name: "body", widget: "markdown", required: false }
-
-
- - name: "site_config"
-   label: "Configurazione Sito"
-   delete: false
-   extension: yml
-   format: yml
-   slug: "{{slug}}"
-   files:
-     - name: "main"
-       label: "Configurazione Principale"
-       file: "src/config/site.yml"
-       description: "Configura il titolo, sottotitolo e impostazioni principali del sito"
-       fields:
-         - { label: "Titolo Sito", name: "siteTitle", widget: "string", default: "A-Normal Opinion" }
-         - { label: "Sottotitolo", name: "siteSubtitle", widget: "string", default: "Opinioni Non Richieste" }
-         - { label: "Descrizione", name: "siteDescription", widget: "text", default: "Un podcast di opinioni non richieste su tecnologia, media e cultura" }
-         - { label: "Autore", name: "author", widget: "string", default: "Signore del Circo" }
-         - { label: "Email", name: "email", widget: "string", default: "info@anormalopinion.com" }
-         - { label: "Logo URL", name: "logoUrl", widget: "string", default: "/logo.svg" }
-         - label: "Social Links"
-       name: "social"
-       widget: "object"
-       fields:
-         - { label: "Instagram", name: "instagram", widget: "string", default: "" }
-         - { label: "Twitter", name: "twitter", widget: "string", default: "" }
-         - { label: "YouTube", name: "youtube", widget: "string", default: "" }
-         - { label: "Spotify", name: "spotify", widget: "string", default: "" }
-         - { label: "LinkedIn", name: "linkedin", widget: "string", default: "" }
-     - { label: "Colore Primario (Hex)", name: "primaryColor", widget: "string", default: "#0ea5e9" }
-     - { label: "Colore Secondario (Hex)", name: "secondaryColor", widget: "string", default: "#06b6d4" }
