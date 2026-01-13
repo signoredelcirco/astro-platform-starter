@@ -1,250 +1,107 @@
 ---
-import PodcastLayout from '../layouts/PodcastLayout.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<PodcastLayout>
-  <!-- Hero Section -->
-  <div class="hero-section">
-    <div class="hero-container">
-      <div class="hero-content">
-        <p class="podcast-label">PODCAST & STORIE</p>
-        <h1 class="hero-title">Test Hero Title</h1>
-        <p class="hero-subtitle">Storie, opinioni e conversazioni che meritano il tuo tempo.</p>
-        
-        <div class="hero-buttons">
-<a href="https://t.me/i_Podcast_del_SignoreDelCirco" class="btn btn-primary" target="_blank">Unisciti al canale Telegram →</a>
-    <a href="https://www.youtube.com/@SignoreDelCirco/videos" class="btn btn-secondary" target="_blank">A-Normal sul Tubo →</a>        </div>
-      </div>
+<Layout title="A-Normal - Home">
+  <div class="home-container">
+    <section class="hero">
+      <h1>Signore del Circo</h1>
+      <p class="tagline">Analisi, opinioni e storie affascinanti fuori dall'ordinario</p>
       
-      <div class="hero-image">
-        <div class="image-placeholder"></div>
+      <div class="cta-buttons">
+        <a href="/a-normal-opinion" class="btn btn-primary">Leggi gli articoli</a>
+        <a href="/chi-sono" class="btn btn-secondary">Chi sono</a>
       </div>
-    </div>
+    </section>
   </div>
-
-  <!-- Divider -->
-  <div class="divider"></div>
-
-  <!-- Sections Grid -->
-  <section class="sections-section">
-    <div class="container">
-      <h2 class="section-title">Ascolta il tuo Podcast preferito</h2>
-      
-      <div class="sections-grid">
-        <!-- Section 1 -->
-        <a href="/astro-platform-starter/opinione-non-richiesta" class="section-card">
-          <h3>Opinione Non Richiesta</h3>
-          <p>Pensieri liberi e non filtrati</p>
-          <span class="discover-link">SCOPRI →</span>
-        </a>
-        
-        <!-- Section 2 -->
-        <a href="/astro-platform-starter/a-normal" class="section-card">
-          <h3>A-Normal</h3>
-          <p>Storie fuori dall'ordinario</p>
-          <span class="discover-link">SCOPRI →</span>
-        </a>
-        
-        <!-- Section 3 -->
-        <a href="/astro-platform-starter/chiacchiere" class="section-card">
-          <h3>Chiacchiere</h3>
-          <p>Conversazioni senza filtri</p>
-          <span class="discover-link">SCOPRI →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Divider -->
-  <div class="divider"></div>
-
-  <!-- Coming Soon -->
-  <section class="coming-soon-section">
-    <div class="container">
-      <h2>Contenuti in arrivo</h2>
-      <p>I contenuti saranno presto disponibili. Torna a trovarci!</p>
-    </div>
-  </section>
-</PodcastLayout>
+</Layout>
 
 <style>
-  .hero-section {
-    padding: 40px 20px;
-    background: white;
-  }
-
-  .hero-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-  }
-
-  .podcast-label {
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: #666;
-    margin-bottom: 20px;
-    font-weight: 500;
-  }
-
-  .hero-title {
-    font-size: 56px;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    font-family: Georgia, serif;
-    font-weight: 700;
-  }
-
-  .hero-subtitle {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #666;
-    margin-bottom: 30px;
-  }
-
-  .hero-buttons {
+  .home-container {
+    min-height: 100vh;
     display: flex;
-    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #ffffff;
+  }
+
+  .hero {
+    max-width: 800px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+    font-family: 'Georgia', serif;
+  }
+
+  .tagline {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .btn {
-    padding: 12px 24px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    border: 2px solid black;
     display: inline-block;
-    cursor: pointer;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
     transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
   }
 
   .btn-primary {
-    background: black;
-    color: white;
+    background: #1a1a1a;
+    color: #ffffff;
   }
 
   .btn-primary:hover {
     background: #333;
+    transform: translateY(-2px);
   }
 
   .btn-secondary {
-    background: white;
-    color: black;
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
   }
 
   .btn-secondary:hover {
-    background: black;
-    color: white;
-  }
-
-  .hero-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .image-placeholder {
-    width: 100%;
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
-    border: 3px solid black;
-  }
-
-  .divider {
-    height: 2px;
-    background: black;
-    margin: 40px 0;
-  }
-
-  .sections-section {
-    padding: 40px 20px;
-    background: white;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-title {
-    font-size: 36px;
-    margin-bottom: 40px;
-    font-family: Georgia, serif;
-    font-weight: 700;
-  }
-
-  .sections-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-  }
-
-  .section-card {
-    text-decoration: none;
-    color: inherit;
-    padding: 20px;
-    transition: transform 0.3s ease;
-  }
-
-  .section-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .section-card h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    font-family: Georgia, serif;
-    font-weight: 700;
-  }
-
-  .section-card p {
-    color: #666;
-    margin-bottom: 15px;
-    font-size: 16px;
-  }
-
-  .discover-link {
-    font-weight: 600;
-    font-size: 14px;
-    color: black;
-  }
-
-  .section-card:hover .discover-link {
-    text-decoration: underline;
-  }
-
-  .coming-soon-section {
-    padding: 60px 20px;
-    text-align: center;
-    background: white;
-  }
-
-  .coming-soon-section h2 {
-    font-size: 32px;
-    margin-bottom: 15px;
-    font-family: Georgia, serif;
-    font-weight: 700;
-  }
-
-  .coming-soon-section p {
-    font-size: 16px;
-    color: #666;
+    background: #f5f5f5;
+    transform: translateY(-2px);
   }
 
   @media (max-width: 768px) {
-    .hero-container {
-      grid-template-columns: 1fr;
+    h1 {
+      font-size: 42px;
     }
 
-    .sections-grid {
-      grid-template-columns: 1fr;
+    .tagline {
+      font-size: 18px;
     }
 
-    .hero-title {
-      font-size: 36px;
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
     }
   }
 </style>
