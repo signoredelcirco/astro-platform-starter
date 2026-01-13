@@ -1,101 +1,141 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Chi sono">
-  <div class="about-section">
-    <div class="about-container">
-      <h1>Chi Sono</h1>
-      <p class="subtitle">Benvenuto nel mio spazio dedicato ai podcast. Qui troverai storie, opinioni e conversazioni che spero possano accompagnarti e farti riflettere.</p>
-      
-      <div class="about-content">
-        <h2>About</h2>
-        <p>Questo progetto nasce dalla voglia di condividere pensieri, esperienze e dialoghi con persone interessanti.</p>
-        
-        <p>Ogni sezione del sito rappresenta un diverso tipo di contenuto:</p>
-        
-        <ul>
-          <li><strong>Opinione Non Richiesta</strong> — I miei pensieri liberi su vari argomenti</li>
-          <li><strong>A-Normal</strong> — Storie fuori dall'ordinario</li>
-          <li><strong>Chiacchiere</strong> — Conversazioni con ospiti interessanti</li>
-        </ul>
-        
-        <p>Puoi modificare questo contenuto dal pannello di amministrazione.</p>
-      </div>
+  <div class="hero">
+    <h1>Chi Sono</h1>
+    <p>Benvenuto nel mio spazio dedicato a condividere storie, opinioni e conversazioni interessanti.</p>
+  </div>
+
+  <div class="content-section">
+    <div class="content-container">
+      <h2>About Me</h2>
+      <p>
+        Sono un content creator appassionato di podcast, video e storytelling. Questo progetto nasce dalla voglia di condividere
+        riflessioni, analisi e storie che meritano di essere ascoltate.
+      </p>
+      <p>
+        Attraverso "A-Normal Opinion" condivido articoli, podcast e video su temi che trovo affascinanti: dal cinema alla tecnologia,
+        dalle serie TV ai videogiochi, fino alle conversazioni più profonde su cultura e società.
+      </p>
     </div>
+  </div>
+
+  <div class="sections">
+    <h2>Le Mie Sezioni</h2>
+    <ul>
+      <li><strong>A-Normal Opinion</strong> - Articoli, analisi e storie fuori dall'ordinario</li>
+      <li><strong>Home</strong> - Ultimi aggiornamenti e contenuti in primo piano</li>
+    </ul>
+  </div>
+
+  <div class="contact-section">
+    <p>Puoi modificare questo contenuto dal pannello di amministrazione.</p>
   </div>
 </Layout>
 
 <style>
-  .about-section {
-    padding: 60px 20px;
-    background: white;
+  .hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    margin-bottom: 60px;
   }
 
-  .about-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  h1 {
+  .hero h1 {
     font-size: 48px;
     margin-bottom: 20px;
-    font-family: Georgia, serif;
+    color: #1a1a1a;
     font-weight: 700;
-    text-align: center;
   }
 
-  .subtitle {
-    font-size: 16px;
+  .hero p {
+    font-size: 18px;
     color: #666;
-    text-align: center;
-    margin-bottom: 50px;
+    max-width: 600px;
+    margin: 0 auto;
     line-height: 1.6;
   }
 
-  .about-content {
+  .content-section {
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+  }
+
+  .content-container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .content-container h2 {
+    font-size: 32px;
+    margin-bottom: 24px;
+    color: #1a1a1a;
+  }
+
+  .content-container p {
     font-size: 16px;
+    color: #555;
     line-height: 1.8;
-    color: #333;
+    margin-bottom: 16px;
   }
 
-  .about-content h2 {
-    font-size: 24px;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    font-family: Georgia, serif;
-    font-weight: 700;
+  .sections {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
   }
 
-  .about-content p {
-    margin-bottom: 15px;
+  .sections h2 {
+    font-size: 28px;
+    margin-bottom: 24px;
+    color: #1a1a1a;
   }
 
-  .about-content ul {
+  .sections ul {
     list-style: none;
-    margin-left: 0;
-    margin-bottom: 15px;
+    padding: 0;
   }
 
-  .about-content li {
-    margin-bottom: 10px;
-    padding-left: 20px;
-    position: relative;
+  .sections li {
+    font-size: 16px;
+    padding: 12px 0;
+    color: #555;
+    border-bottom: 1px solid #eee;
   }
 
-  .about-content li:before {
-    content: "• ";
-    position: absolute;
-    left: 0;
+  .sections li:last-child {
+    border-bottom: none;
+  }
+
+  .contact-section {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    color: #666;
   }
 
   @media (max-width: 768px) {
-    h1 {
-      font-size: 32px;
+    .hero {
+      padding: 60px 20px;
     }
 
-    .about-content {
-      font-size: 15px;
+    .hero h1 {
+      font-size: 36px;
+    }
+
+    .content-container {
+      padding: 24px;
+    }
+
+    .content-container h2 {
+      font-size: 24px;
     }
   }
 </style>
