@@ -1,8 +1,5 @@
 ---
 import Logo from '../components/Logo.astro';
-// Leggi il titolo del sito dalla variabile d'ambiente o usa il default
-const SITE_TITLE = import.meta.env.PUBLIC_SITE_TITLE || 'A-Normal Opinion';
-const SITE_SUBTITLE = import.meta.env.PUBLIC_SITE_SUBTITLE || 'Opinioni Non Richieste';
 ---
 
 <header class="header">
@@ -12,25 +9,14 @@ const SITE_SUBTITLE = import.meta.env.PUBLIC_SITE_SUBTITLE || 'Opinioni Non Rich
       <Logo />
     </a>
 
-    <!-- Titolo Sito -->
-    <div class="site-title">
-      <h1 class="site-name">{SITE_TITLE}</h1>
-      <p class="site-subtitle">{SITE_SUBTITLE}</p>
-    </div>
-
     <!-- Menu Navigazione -->
     <ul class="nav-menu">
       <li>
         <a href="/" class="nav-link">Home</a>
       </li>
       
-      <li class="nav-item-dropdown">
-        <button class="nav-link nav-toggle">Podcast</button>
-        <ul class="dropdown-menu">
-          <li><a href="/opinione-non-richiesta">Opinione Non Richiesta</a></li>
-          <li><a href="/a-normal">A-Normal Podcast</a></li>
-          <li><a href="/chiacchiere">Chiacchiere</a></li>
-        </ul>
+      <li>
+        <a href="/a-normal-opinion" class="nav-link">A-Normal Opinion</a>
       </li>
 
       <li>
@@ -42,12 +28,12 @@ const SITE_SUBTITLE = import.meta.env.PUBLIC_SITE_SUBTITLE || 'Opinioni Non Rich
 
 <style is:global>
   .header {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-    border-bottom: 2px solid #0ea5e9;
+    background: #ffffff;
+    border-bottom: 2px solid #000000;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .nav-container {
@@ -57,9 +43,7 @@ const SITE_SUBTITLE = import.meta.env.PUBLIC_SITE_SUBTITLE || 'Opinioni Non Rich
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
-    height: auto;
-    min-height: 80px;
+    height: 80px;
   }
 
   .logo-link {
@@ -67,145 +51,42 @@ const SITE_SUBTITLE = import.meta.env.PUBLIC_SITE_SUBTITLE || 'Opinioni Non Rich
     align-items: center;
     text-decoration: none;
     flex-shrink: 0;
-    transition: transform 0.2s ease;
-  }
-
-  .logo-link:hover {
-    transform: scale(1.05);
-  }
-
-  .site-title {
-    flex: 1;
-    text-align: center;
-  }
-
-  .site-name {
-    margin: 0;
-    padding: 0;
-    font-size: 24px;
-    font-weight: 700;
-    color: #0ea5e9;
-    letter-spacing: 0.5px;
-    transition: color 0.2s ease;
-  }
-
-  .site-name:hover {
-    color: #06b6d4;
-  }
-
-  .site-subtitle {
-    margin: 4px 0 0 0;
-    padding: 0;
-    font-size: 12px;
-    color: #9ca3af;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
   }
 
   .nav-menu {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 40px;
     margin: 0;
     padding: 0;
-    flex-shrink: 0;
   }
 
   .nav-link {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    color: #e5e7eb;
+    color: #000000;
     text-decoration: none;
     background: none;
     border: none;
-    padding: 8px 0;
+    padding: 0;
     cursor: pointer;
     transition: color 0.2s ease;
   }
 
   .nav-link:hover {
-    color: #0ea5e9;
+    color: #666666;
   }
 
-  .nav-item-dropdown {
-    position: relative;
-  }
-
-  .nav-toggle {
-    cursor: pointer;
-  }
-
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #1f2937;
-    border: 1px solid #0ea5e9;
-    list-style: none;
-    padding: 8px 0;
-    margin: 12px 0 0 0;
-    min-width: 220px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  .nav-item-dropdown:hover .dropdown-menu {
-    display: block;
-  }
-
-  .dropdown-menu li {
-    padding: 0;
-  }
-
-  .dropdown-menu a {
-    display: block;
-    padding: 12px 20px;
-    color: #e5e7eb;
-    text-decoration: none;
-    font-size: 14px;
-    transition: all 0.2s ease;
-  }
-
-  .dropdown-menu a:hover {
-    background: #374151;
-    color: #0ea5e9;
-    padding-left: 24px;
-  }
-
-  /* Responsive Design */
   @media (max-width: 768px) {
     .nav-container {
       flex-direction: column;
+      height: auto;
       padding: 16px 20px;
-      gap: 16px;
-    }
-
-    .site-title {
-      text-align: center;
-    }
-
-    .site-name {
-      font-size: 20px;
     }
 
     .nav-menu {
       gap: 16px;
-    }
-
-    .dropdown-menu {
-      position: static;
-      display: none;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      padding: 0;
-    }
-
-    .nav-item-dropdown:hover .dropdown-menu {
-      display: none;
+      flex-direction: column;
     }
   }
 </style>
