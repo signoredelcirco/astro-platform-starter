@@ -1,9 +1,8 @@
 ---
 import Logo from '../components/Logo.astro';
-
 // Leggi il titolo del sito dalla variabile d'ambiente o usa il default
-const SITE_TITLE = import.meta.env.SITE_TITLE || 'A-Normal Opinion';
-const SITE_SUBTITLE = import.meta.env.SITE_SUBTITLE || 'Opinioni Non Richieste';
+const SITE_TITLE = import.meta.env.PUBLIC_SITE_TITLE || 'A-Normal Opinion';
+const SITE_SUBTITLE = import.meta.env.PUBLIC_SITE_SUBTITLE || 'Opinioni Non Richieste';
 ---
 
 <header class="header">
