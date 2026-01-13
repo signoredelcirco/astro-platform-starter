@@ -1,47 +1,98 @@
 ---
-import PodcastLayout from '../../layouts/PodcastLayout.astro';
+import Layout from '../../layouts/Layout.astro';
 ---
 
-<PodcastLayout>
-  <div class="section-container">
+<Layout title="Chiacchiere">
+  <div class="section-header">
     <h1>Chiacchiere</h1>
-    <p>Conversazioni senza filtri e discussioni interessanti.</p>
-    
+    <p>Conversazioni senza filtri e discussioni interessanti su temi vari.</p>
+  </div>
+
+  <div class="section-container">
     <div class="articles">
-      <article>
+      <article class="article-item">
         <h2>Articolo di Prova</h2>
-        <p>Una sezione per conversazioni informali su vari argomenti.</p>
+        <p class="meta">Una sezione per conversazioni e chiacchiere informali su vari argomenti.</p>
+        <p>Questo progetto nasce dalla voglia di condividere riflessioni, analisi e storie che meritano di essere ascoltate.</p>
       </article>
     </div>
   </div>
-</PodcastLayout>
+</Layout>
 
 <style>
+  .section-header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    margin-bottom: 40px;
+  }
+
+  .section-header h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+
+  .section-header p {
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
   .section-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 0 20px;
   }
-  
-  h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    font-family: Georgia, serif;
-  }
-  
+
   .articles {
-    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
   }
-  
-  article {
-    padding: 20px;
-    margin-bottom: 20px;
-    background: #f9f9f9;
-    border-radius: 4px;
+
+  .article-item {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
-  article h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+
+  .article-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .article-item h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  .article-item p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .meta {
+    color: #999;
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .section-header h1 {
+      font-size: 36px;
+    }
+
+    .articles {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
