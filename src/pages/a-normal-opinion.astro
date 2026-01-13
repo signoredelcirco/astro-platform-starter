@@ -1,5 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
 
 // Get all articles from the a_normal_opinion collection
 const allArticles = await getCollection('a_normal_opinion');
