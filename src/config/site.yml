@@ -1,0 +1,31 @@
+# Configurazione principale del sito A-Normal Opinion
+siteTitle: "A-Normal Opinion"
+siteSubtitle: "Opinioni Non Richieste"
+siteDescription: "Un podcast di opinioni non richieste su tecnologia, media e cultura"
+author: "Signore del Circo"
+email: "info@anormalopinion.com"
+logoUrl: "/logo.svg"
+
+# Link ai social media
+social:
+  instagram: "https://instagram.com/anormalopinion"
+  twitter: "https://twitter.com/anormalopinion"
+  youtube: "https://youtube.com/@anormalopinion"
+  spotify: "https://open.spotify.com/show/anormalopinion"
+  linkedin: "https://linkedin.com/in/anormalopinion"
+
+# Configurazione colori tema
+primaryColor: "#0ea5e9"
+secondaryColor: "#06b6d4"
+
+# Metadati SEO
+keywords:
+  - podcast
+  - opinioni
+  - tecnologia
+  - media
+  - cultura
+  - intrattenimento
+
+# Data di ultimo aggiornamento
+lastUpdated: "2026-01-13"
